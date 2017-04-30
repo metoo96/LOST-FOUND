@@ -1,0 +1,24 @@
+[ 2017-04-27T01:29:46+08:00 ] ::1 /campus/Public/Js/Base.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001491s ]
+ERR: 无法加载模块:Public
+
+[ 2017-04-27T01:29:47+08:00 ] ::1 /campus/Public/Js/prototype.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001242s ]
+ERR: 无法加载模块:Public
+
+[ 2017-04-27T01:29:47+08:00 ] ::1 /campus/Public/Js/ThinkAjax.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001224s ]
+ERR: 无法加载模块:Public
+
+[ 2017-04-27T01:29:48+08:00 ] ::1 /campus/Public/Js/mootools.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001118s ]
+ERR: 无法加载模块:Public
+
