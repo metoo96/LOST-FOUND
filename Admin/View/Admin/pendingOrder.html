@@ -17,7 +17,7 @@
 		<button onclick="pendingorder()" >待审核失物订单</button>
 		<button onclick="onlineorder()" >上线失物订单</button>
 		<button onclick="allorder()" >所有失物订单</button>
-		<button onclick="pfindadd()" >注销</button>
+		<button onclick="logout()" >退出</button>
 		</div>
 		<div style="width:80%;height:650px;float:right;background:#8EE9E9">
 		<table style="width:100%;background:#E6E6E6">
@@ -27,6 +27,9 @@
 				</td>
 				<td>
 			失物人姓名
+				</td>
+				 <td>
+			提交时间：
 				</td>
 				<td>
 			失物人备注
@@ -41,6 +44,9 @@
 				{$l['lost_name']}
 				</td>
 				<td>
+				<?php echo date('Y-m-d',$l['time']); ?>
+				</td>
+				<td>
 				{$l['lost_desc']}
 				</td>
 				<td>
@@ -49,6 +55,31 @@
 				</td>
 			</tr>
 			</foreach>
+			<tr>
+			<td>
+			<h2>
+			{$page}
+			</h2>
+			</td>
+			<tr>
+		</table>
+		<table>
+		<tr>
+		<td>
+		<div style="margin-left:400px">
+		<button onclick="Alledit()">
+		待审核全部通过
+		</button>
+		</div>
+		</td>
+		<td>
+		<div style="margin-left:150px;">
+		<button onclick="Alldel()">
+		待审核全部关闭
+		</button>
+		</div>
+		</td>
+		</tr>
 		</table>
 		</div>
 	</div>
@@ -66,8 +97,14 @@
 <div id="allorder">
 {:U('Admin/Admin/allOrder')}
 </div>
-<div id="personalfindadd">
-{:U('Home/Personal/findadd')}
+<div id="logoutAjax">
+{:U('Admin/login/logoutAjax')}
+</div>
+<div id="pendingAllEdit">
+{:U('Admin/Admin/pendingOrderAllEditAjax')}
+</div>
+<div id="pendingAllDel">
+{:U('Admin/Admin/pendingOrderAllDelAjax')}
 </div>
 </div>
 	    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
@@ -85,6 +122,68 @@
 		var pfindadd = function(){
 			window.location.href = $('#personalfindadd').html();
 		}
+	
+		   //关闭操作
+		   var Alldel= function(){
+		      var r=confirm("确定全部关闭？");
+             if (r==true)
+             {
+            $.ajax({
+               url:$('#pendingAllDel').html(),
+               //请求成功
+               success:function(res){
+                  if(res.success){
+                      alert(res.msg);
+                  }else {
+                     alert(res.errmsg);
+                  }
+               },
+               //请求失败
+               error:function(){
+                  alert('网络错误');
+               }
+            })
+         }else{
+	
+		 }
+		 }
+		 
+		
+        var Alledit=function ()
+        {
+        var r=confirm("确定全部通过？");
+        if (r==true)
+        {
+               $.ajax({
+               url:$('#pendingAllEdit').html(),
+               //请求成功
+               success:function(res){
+                  if(res.success){
+                      alert(res.msg);
+                  }else {
+                     alert(res.errmsg);
+                  }
+               },
+               //请求失败
+               error:function(){
+                  alert('网络错误');
+               }
+            })
+        }
+      else
+        {
+       
+        }
+        }
+        var logout = function(){
+		var r=confirm("确定退出该系统？");
+		if(r==true){
+			window.location.href = $('#logoutAjax').html();
+		}else{
+		
+		}
+	   }
+</script>		 
        </script>
 </body>
 </html>
