@@ -17,7 +17,7 @@
 		<button onclick="pendingorder()" >待审核失物订单</button>
 		<button onclick="onlineorder()" >上线失物订单</button>
 		<button onclick="allorder()" >所有失物订单</button>
-		<button onclick="pfindadd()" >注销</button>
+		<button onclick="logout()" >退出</button>
 		</div>
 		<div style="width:80%;height:650px;float:right;background:#8EE9E9">
 		<table style="width:100%;background:#E6E6E6">
@@ -93,24 +93,37 @@
 		</tr>
 		<tr>
 		<td>
-			失物人备注:
+			失物人手机:
 			</td>
 			<td>
 			<?php echo ($row['lost_mobile']); ?>
+			</td>
+		</tr>
+	    <tr>
+		<td>
+		<hr>
+		</td>
+		</tr>
+		<tr>
+			<td>
+			提交时间:
+			</td>
+			<td>
+			<?php echo date('Y-m-d',$row['time']); ?>
 			</td>
 		</tr>
 		</table>
 		<table>
 		<tr>
 		<td>
-		<div style="margin-left:450px">
+		<div style="margin-left:400px">
 		<button onclick="edit()">
 		通   过
 		</button>
 		</div>
 		</td>
 		<td>
-		<div>
+		<div style="margin-left:150px;">
 		<button onclick="del()">
 		关   闭
 		</button>
@@ -129,8 +142,8 @@
 <div id="allorder">
 <?php echo U('Admin/Admin/allOrder');?>
 </div>
-<div id="personalfindadd">
-<?php echo U('Home/Personal/findadd');?>
+<div id="logoutAjax">
+<?php echo U('Admin/login/logoutAjax');?>
 </div>
 <div id="allorderdetail">
 <?php echo U('Admin/Admin/allOrderDetail');?>
@@ -142,8 +155,8 @@
 <?php echo U('Admin/Admin/pendingOrderEditAjax');?>
 </div>
 </div>
-	    <script type="text/javascript" src="/campus/Public/js/jquery-2.2.4.min.js"></script>
-		<script type="text/javascript" src="/campus/Public/js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="/lost_found/Public/js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="/lost_found/Public/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 		var pendingorder = function(){
 			window.location.href = $('#pendingorder').html();
@@ -154,14 +167,15 @@
 		var allorder = function(){
 			window.location.href = $('#allorder').html();
 		}
-		var pfindadd = function(){
-			window.location.href = $('#personalfindadd').html();
-		}
+		
 
 
 
 		   //关闭操作
 		   var del= function(){
+		  var r=confirm("确定关闭？");
+		  if (r==true)
+		   {
             var data = {
                id:$('#id').val()
             }
@@ -182,10 +196,16 @@
                   alert('网络错误');
                }
             })
-         }
+         }else{
+		
+		 }
+		 }
 
            //通过操作
 		   var edit= function(){
+	      var r=confirm("确定通过？");
+		  if (r==true)
+		   {
             var data = {
                id:$('#id').val()
             }
@@ -206,7 +226,19 @@
                   alert('网络错误');
                }
             })
-         }
+         }else{
+		
+		 }
+		 }
+
+	    var logout = function(){
+		var r=confirm("确定退出该系统？");
+		if(r==true){
+			window.location.href = $('#logoutAjax').html();
+		}else{
+		
+		}
+	   }
 		</script>		
 </body>
 </html>

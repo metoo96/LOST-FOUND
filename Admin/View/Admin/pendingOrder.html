@@ -106,6 +106,9 @@
 <div id="pendingAllDel">
 {:U('Admin/Admin/pendingOrderAllDelAjax')}
 </div>
+<div id="adminindex">
+{:U('Admin/Admin/index')}
+</div>
 </div>
 	    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
@@ -134,6 +137,7 @@
                success:function(res){
                   if(res.success){
                       alert(res.msg);
+                      window.location.href = $('#adminindex').html();
                   }else {
                      alert(res.errmsg);
                   }
@@ -160,6 +164,7 @@
                success:function(res){
                   if(res.success){
                       alert(res.msg);
+                      window.location.href = $('#adminindex').html();
                   }else {
                      alert(res.errmsg);
                   }

@@ -1,0 +1,28 @@
+@charset "UTF-8";
+table.imagetable {  
+	width:100% ;
+	border:1px solid gray; 
+	border-radius:5px;
+    font-family: 微软雅黑,sans-serif;  
+    font-size:30px;  
+    font
+    color:white;  
+    border-width: 2px;  
+    border-color: #a9f7f7;  
+    border-collapse: collapse;  
+    
+}  
+table.imagetable td {  
+    background:#dcddc0 url('../img/table.jpg');  
+    border-width: 2px;  
+    padding: 8px;  
+    color:white; 
+    border-style: solid;  
+    border-color: #a9f7f7;  
+    
+}  
+table a{
+	float: right;
+	text-align: right;
+	color:white; 
+}

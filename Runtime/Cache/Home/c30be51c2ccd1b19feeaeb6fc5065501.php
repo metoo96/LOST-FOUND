@@ -1,0 +1,63 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>
+关于我们
+</title>
+<style>
+#header{
+ margin-top:10px;
+}
+#foot{
+  margin-top:130px;
+}
+</style>
+</head>
+<body style="text-align:center">
+<div id="header">
+<h2>【南苑计协开发部前端招贤通告】</h>
+<h4>
+
+希望你会——
+有html css js相关基础
+或、熟悉http协议基本内容
+或、熟悉jquery
+或、熟悉react | vue | angular等
+或、熟悉node相关基础
+或、熟悉express | koa | egg等
+
+或者你还有——
+一手良好的平面设计技术
+还想做成网页、app
+
+亦或者你——
+手无半寸技能
+通告半篇火星文
+查阅度娘
+兴趣大发
+
+赶紧尝试加入我们！
+
+你将有——
+【大量实际项目开发维护机会】
+【参与优秀团队的机会】
+【良好专业学术氛围】
+【A站大🐮分享交流】
+【阿里师兄指引方向】
+ 最重要是
+认识更多优秀的同龄人
+
+简历投放入口：
+461437874@qq.com
+</h4>
+</div>
+<div id="foot">
+<h4 style="text-align:center">Copyright <code>&copy;</code> 2017 中大南方计算机协会开发部</h4><tr>
+<h4 style="text-align:center"> code<code>&copy;</code>16级开发部智客技术团队</h4>
+<p>Version 1.0.0</p>
+</div>
+</body>
+</html>

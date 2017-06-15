@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/FindAdd.css">
 <title>
 个人失物新建报失
 </title>
 </head>
 <body style="margin:10px auto;">
 <h1>个人失物报失详情</h1>
-<hr>
+  <div style="width:100%;height:5px">
+       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
+       </div>
+   </div>
   <table style="margin:10px auto;"> 
       <tr style="display:none">
       <td>
@@ -22,18 +29,20 @@
       </tr>
       <tr>
       <td>
-      <label><span>失物人的姓名: </span></label>
+      <label><span>失物人的姓名：</span></label>
       <input type="text" name="lost_name" value="{$row['lost_name']}" disabled="true" size="30" />
       </td>
       </tr>
       <tr>
       <td>
-      <label><span>如需修改备注信息,请修改备注信息后点击修改按钮</span></label>
+      <label><span class="Msg">如有需要,可修改备注信息</span></label>
       </td>
       </tr>
+
       <tr>
       <td>
-      <label><span>失物人的备注信息:</span></label>
+      <br>
+      <label><span>备注信息:</span></label>
       <textarea name="lost_desc" id="lostdesc"/>{$row['lost_desc']} </textarea>
       </td>
       </tr>
@@ -48,6 +57,12 @@
       </td>
       </tr>
  </table>
+  <div style="width:100%;height:5px">
+       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
+       </div>
+   </div>
    <div style="visibility:hidden;display:none">
          <div id="getLostDescAjax">
             {:U('Home/Personal/lostdetailAjax')}
@@ -70,6 +85,9 @@
 <div id="personallostadd">
 {:U('Home/Personal/lostadd')}
 </div>
+<div id="loginindex">
+      {:U('Home/User/index')}
+   </div>
 </div>
       <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
       <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
@@ -91,6 +109,7 @@
                success:function(res){
                   if(res.success){
                       alert(res.msg);
+                      window.location.href = $('#loginindex').html();
                   }else {
                      alert(res.errmsg);
                   }
@@ -101,8 +120,6 @@
                }
             })
          }
-
-
 
 
       var back = function(){

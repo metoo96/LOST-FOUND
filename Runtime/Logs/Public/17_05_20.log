@@ -1,0 +1,10 @@
+[ 2017-05-20T14:35:32+08:00 ] 14.23.185.229 /ACM/official/lost_found/Public/img/background.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000061s ]
+
+[ 2017-05-20T17:05:56+08:00 ] 14.23.185.229 /ACM/official/lost_found/Public/img/nf.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000058s ]
+

@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Basic.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/tableStyle.css">
 <title>失物招领列表</title>
 </head>
 <body>
 <h1>
 个人失物失物列表
 </h1>
-<hr>
-<table style="width:800px ;border:1px solid gray; border-radius:5px;">
+  <div style="width:100%;height:5px">
+       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
+       </div>
+   </div>
+<table class="imagetable">
 <foreach name="list" item="list" >
 <tr>
 <td>
-<a href="{:U('Home/personal/lostdetail',array('lost_id'=>$list['lost_id']))}" style="text-decoration:none;">{$list['lost_name']}</a>
+失物学号：{$list['lost_number']};
+失物姓名: {$list['lost_name']};
+失物类型: {$list['lost_type']};
+失物时间: <?php echo date("Y-m-d",$list['time']);?>;
+<a href="{:U('Home/personal/lostdetail',array('lost_id'=>$list['lost_id']))}" style="text-decoration:none;">详情</a>
 </td>
 </tr>
 </foreach>
-</table>
-<form  method="post" action="{:U('Home/AllLost/lostlist')}">
-<select name="p">
+<tr>
+<td>
+<form  method="post" action="{:U('Home/Personal/lostlist')}">
+<label id="lblSelect">
+<select name="p" id="selectStyle">
 <?php for($i=1;$i<=($count/5+1);$i++){?>
 <option>
 <?php echo $i; ?>
 </option>
 <?php }?>
 </select>
+</label>
 <input type="submit" value="跳转">
 </form>
-<p>
+</td>
+</tr>
+<tr>
+<td>
+<h3>
 {$page}
-</p>
+</h3>
+</td>
+</tr>
+</table>
+  <div style="width:100%;height:5px">
+       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
+       </div>
+   </div>
 <button onclick="back()" >返回</button>
 <button onclick="fullMsg()" >个人信息</button>
 <button onclick="lostlist()" >我的报失</button>

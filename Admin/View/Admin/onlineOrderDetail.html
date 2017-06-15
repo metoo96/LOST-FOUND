@@ -117,6 +117,9 @@
 <div id="onlineorderdel">
 {:U('Admin/Admin/onlineOrderDelAjax')}
 </div>
+<div id="onlineorder">
+{:U('Admin/Admin/onlineOrder')}
+</div>
 </div>
 	    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
@@ -153,6 +156,7 @@
                success:function(res){
                   if(res.success){
                       alert(res.msg);
+                      window.location.href = $('#onlineorder').html();
                   }else {
                      alert(res.errmsg);
                   }

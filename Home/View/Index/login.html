@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>
-南苑校园失物招领登录界面
+南苑校园失物招领系统
 </title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Login.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Basic.css">
 </head>
 <body>
-<h1>南苑校园失物招领登录界面</h1><hr>
-	  <div>
+<h1>南苑校园失物招领系统登录</h1>
+ <div style="width:100%;height:5px">
+       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
+       </div>
+ </div>
+	  <div >
+	  <div style="text-align:center;text-shadow:5px 6px 5px #22DD22"><img  style="border:10px solid #22DD22;border-radius:130px;margin-top: 10%;opacity:0.9" width="250px" height="250px" src="__PUBLIC__/img/nf.jpg" alt="nanfang"/></div>
 		  <div>
-			  <input type="text" placeholder="手机号" id="mobile"/>
-				<button onclick="getCode()" id="getBtn">
+			  <input type="text" placeholder="手机号" id="mobile"/>	
+		  </div><br>
+		      <input type="text" placeholder="验证码" id="code">
+		  <div id="btnDiv" style="margin-top: 5%">
+		  <button onclick="getCode()" id="getBtn">
 					 获取验证码
 				</button>
 				<div id="getdefaultBtn" style="display:none">
 					60s后重新获取
 				</div>
-		  </div>
-		  <input type="text" placeholder="验证码" id="code">
-		  <div align="left">
 				<button  onclick="checkCode()" >
-			     提交
+			        登录   
 				</button>
 		  </div>
 		  <div>
-		  <hr>
+		  <div style="width:100%;height:5px">
+			   <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
+			   </div>
+			   <div style="float:left;width:50%;height:5px;background-color:#22DD48">
+			   </div>
+         </div>
+		 <tr>
 		  <!--分享操作的代码-->
 		  <!-- JiaThis Button BEGIN -->
 		  <div class="jiathis_style_32x32">
@@ -37,6 +54,18 @@
 			</div>
 			<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 			<!-- JiaThis Button END -->
+			<div>
+			<span>
+			<a href="{:U('Home/index/We')}" style="color:#FFFFFF">关于我们</a>
+			</span>
+			</div>
+	       <!--动态点赞开始-->
+			<div class="praise">
+			<span id="praise"><img  style="width:50px;height:50px;" src="__PUBLIC__/img/zan.png" id="praise-img" /></span>
+			<span id="praise-txt">1456</span>
+            </div>
+		   <!--动态点赞结束-->
+			</div>
 		   </div>
 		</div>
 		<div style="visibility:hidden;display:none">
@@ -47,7 +76,7 @@
 				{:U('Home/Index/checkCodeAjax')}
 			</div>
 			<div id="loginindex">
-			{:U('Home/User/index')}
+			    {:U('Home/User/index')}
 			</div>
 		</div>
 
@@ -126,6 +155,7 @@
 					}
 				})
 			}
+			
 		</script>
 	</body>
 </html>

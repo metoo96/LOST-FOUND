@@ -1,0 +1,64 @@
+@charset "UTF-8";
+select#selectStyle
+            {
+               width                    : 285px;
+               height                   : 80px;
+               line-height              : 40px;
+               padding-right            : 40px;
+               text-indent              : 4px;
+               text-align               : left;
+               vertical-align           : middle;
+               box-shadow               : inset 0 0 3px #606060;
+               border                   : 1px solid #acacac;
+               -moz-border-radius       : 6px;
+               -webkit-border-radius    : 6px;
+               border-radius            : 6px;
+               -webkit-appearance       : none;
+               -moz-appearance          : none;
+               appearance               : none;
+               font-family              : Arial,  Calibri, Tahoma, Verdana;
+               font-size                : 40px;
+               color                    : #000099;
+               cursor                   : pointer;
+               outline                  : none;
+               position:relative;
+  			   top						:15px;
+  			   bottom					:15px;
+           left:12%;
+           
+            }
+            select#selectStyle option
+            {
+                padding             : 4px 10px 4px 10px;
+                font-size           : 15px;
+                font-weight         : normal;
+                
+            }
+            select#selectStyle option[selected]{ font-weight:bold}
+            select#selectStyle option:nth-child(even) { background-color:#f5f5f5; }
+            select#selectStyle:hover {font-weight: 700;}
+            select#selectStyle:focus {box-shadow: inset 0 0 5px #000099; font-weight: 600;}
+ 
+            
+            label#lblSelect{ position: relative; display: inline-block;}
+            label#lblSelect::after
+            {
+                content                 : "\25bc";
+                position                : absolute;
+                top                     : 15px;
+                right                   : 0px;
+                bottom                  : 40%;
+                left:95%;
+                width                   : 90px;
+                line-height             : 80px;
+                height   				: 80px;
+                vertical-align          : middle;
+                text-align              : center;
+                background              : #000099;
+                color                   : #fefefe;
+               -moz-border-radius       : 0 6px 6px 0;
+               -webkit-border-radius    : 0 6px 6px 0;
+                border-radius           : 0 6px 6px 0;
+                pointer-events          : none;
+
+            }

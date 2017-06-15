@@ -7,8 +7,25 @@ class IndexController extends Controller {
 		parent::__construct();
 		$this->usermodel=D('User');
 	}
+  /**
+   * 登录处理(及自动登录的实现)
+   * @return [type] [description]
+   */
   public function login(){
-    $this->display();
+    $result=M('User')->where(array('user_mobile'=>cookie('user_mobile')))->find();
+    $s1=$result['user_mobile'];
+    $s2=$result['user_salt'];
+    $str1=$s1.$s2;
+    $str2=cookie('user_mobile').cookie('key');
+    if((!empty(cookie('user_mobile')))&&(!empty(cookie('key')))){
+     if(md5($str1)===md5($str2)){
+       $this->redirect('Home/User/index');//第二次登录时进行的cookie登录
+    }else{
+       $this->display();//第一次登录
+   }
+     }else{
+      $this->display();//第一次登录
+     }
   }
 
   /**
@@ -16,7 +33,7 @@ class IndexController extends Controller {
    * @param  [type] $msg [description]
    * @return [type]      [description]
    */
-  private function successReturn($msg){
+   public function successReturn($msg){
       $res['success'] = true;
       $res['msg'] = $msg;
       $this->ajaxReturn($res);
@@ -35,16 +52,14 @@ class IndexController extends Controller {
 
     /**
      * 用于检验数据是否完整
-     * @param  [type] $data [description]
-     * @return [type]       [description]
      */
     private function checkData($data){
       foreach ($data as $key => $value) {
         if($data[$key] == null || $data[$key] == ''){
           $this->errorReturn('信息不全');
         }
+      }
     }
-  }
     
 
  
@@ -75,7 +90,7 @@ class IndexController extends Controller {
       if(count($user) != 0 && $user != null){
             return true;
       }
-      $this->errorReturn('不可预料的错误发生了');
+      $this->errorReturn('手机号错误');
     }
      private function checkUserCode($mobile,$Code){
       $data = M('User')->where(array('user_mobile'=>$mobile))->find();
@@ -90,13 +105,14 @@ class IndexController extends Controller {
     * 用户登录
     */
     public function loginSuccess($mobile){
-      cookie('user_mobile',$mobile);
+      $data=M('User')->where(array('user_mobile'=>$mobile))->find();
+      $key=$data['user_salt'];
+      cookie('key',$key,3600*24*30);//设置cookie保留在客户端一个月时间
+      cookie('user_mobile',$mobile,3600*24*30);//设置cookie的生命周期为
       $this->successReturn('验证成功');
     }
 
   
-
-
 
 
     /**
@@ -141,11 +157,11 @@ class IndexController extends Controller {
       private function addNewUser($mobile){
       $data['user_mobile'] = $mobile;
       $data['user_code'] = rand(1001,9999);
+      $data['user_salt'] =$this->randStr(8);
       $result = M('User')->add($data);
       if($result!=false){
         //发送验证码
-        //$this->sendCode($data['user_mobile'],$data['user_code']);
-        $this->successReturn('验证码已成功');
+        $this->sendCode($data['user_mobile'],$data['user_code']);
       }else {
         $this->errorReturn('新增用户数据失败');
       }
@@ -160,10 +176,11 @@ class IndexController extends Controller {
       private function updateUser($mobile){
       $data['user_mobile'] = $mobile;
       $data['user_code'] = rand(1001,9999);
+      $data['user_salt'] =$this->randStr(8);
       $result = M('User')->where(array('user_mobile'=>$mobile))->save($data);
       if($result!=false){
         //发送验证码
-        //$this->sendCode($data['user_mobile'],$data['user_code']);
+        $this->sendCode($data['user_mobile'],$data['user_code']);
         $this->successReturn("验证码已成功");
       }else {
         $this->errorReturn('新增用户数据失败');
@@ -177,14 +194,14 @@ class IndexController extends Controller {
     * 发送验证码
     */
     private function sendCode($phone,$code){
-        $remote_server = "http://www.cybergear-cn.com/ACM/send.php?phone=".$phone."&code=".$code;
+        $remote_server = "http://www.cybergear-cn.com/ACM/official/sendCode.php?mobile=".$phone."&code=".$code;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $remote_server);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_USERAGENT, "jb51.net's CURL Example beta");
         $data = curl_exec($ch);
         curl_close($ch);
-        $result = M('User')->where(array('user_mobile'=>$phone))->setField('time',time());
+        $result = M('User')->where(array('user_mobile'=>$phone))->setField('time',time());//修改登录时间
         if($result!==false){
           $this->successReturn('发送成功');
         }else {
@@ -192,6 +209,19 @@ class IndexController extends Controller {
         } 
         return $data;
     }
-
+	
+	/**
+	*关于我们
+	*/
+    public function We(){
+		$this->display();
+	}
+  /**
+   * 随机产生一个字符串
+   */
+  public function randStr($length){
+    $str="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+    return substr(str_shuffle($str),0,$length);
+  }
 }
 ?>

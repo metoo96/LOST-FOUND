@@ -17,7 +17,7 @@
 		<button onclick="pendingorder()" >待审核失物订单</button>
 		<button onclick="onlineorder()" >上线失物订单</button>
 		<button onclick="allorder()" >所有失物订单</button>
-		<button onclick="pfindadd()" >注销</button>
+		<button onclick="logout" >退出</button>
 		</div>
 		<div style="width:80%;height:650px;float:right;background:#8EE9E9">
 		<table style="width:100%;background:#E6E6E6">
@@ -58,6 +58,14 @@
 			<?php echo ($row['lost_desc']); ?>
 			</td>
 		</tr>
+			<tr>
+			<td>
+			提交时间:
+			</td>
+			<td>
+			<?php echo date('Y-m-d',$row['time']); ?>
+			</td>
+		</tr>
 		<tr>
 			<td>
 			失物类型:
@@ -67,11 +75,19 @@
 			</td>
 		</tr>
 		<td>
-			失物人备注:
+			失物人手机:
 			</td>
 			<td>
 			<?php echo ($row['lost_mobile']); ?>
 			</td>
+		</tr>
+		<tr>
+          <td>
+		  是否找到：
+          </td>
+		    <td>
+				<?php if($row['mark']==1){ echo "是"; }else{ echo "否"; } ?>
+		   </td>
 		</tr>
 		</table>
 		<div style="margin-top:30px;margin-left:500px">
@@ -91,15 +107,15 @@
 <div id="allorder">
 <?php echo U('Admin/Admin/allOrder');?>
 </div>
-<div id="personalfindadd">
-<?php echo U('Home/Personal/findadd');?>
+<div id="logoutAjax">
+<?php echo U('Admin/login/logoutAjax');?>
 </div>
 <div id="onlineorderdel">
 <?php echo U('Admin/Admin/onlineOrderDelAjax');?>
 </div>
 </div>
-	    <script type="text/javascript" src="/campus/Public/js/jquery-2.2.4.min.js"></script>
-		<script type="text/javascript" src="/campus/Public/js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="/lost_found/Public/js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="/lost_found/Public/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 		var pendingorder = function(){
 			window.location.href = $('#pendingorder').html();
@@ -119,6 +135,9 @@
 
            
          var del= function(){
+       var r=confirm("确定关闭？");
+       if (r==true){
+
             var data = {
                id:$('#id').val()
             }
@@ -139,7 +158,18 @@
                   alert('网络错误');
                }
             })
-         }
+         }else{
+		
+		 }
+		 }
+		var logout = function(){
+		var r=confirm("确定退出该系统？");
+		if(r==true){
+			window.location.href = $('#logoutAjax').html();
+		}else{
+		
+		}
+	   }
 		</script>		
 </body>
 </html>

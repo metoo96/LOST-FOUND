@@ -17,9 +17,14 @@ class UserController extends Controller{
 
 
      public function fullMsg(){
+		  if($this->checkCookie()){
           $user = $this->usermodel->where(array('user_mobile'=>cookie('user_mobile')))->find();
           $this->assign('user',$user);
           $this->display();
+		  }else{
+           $this->redirect('Home/index/login');
+		   exit();
+		  }
      }
 
 
@@ -91,15 +96,14 @@ class UserController extends Controller{
 
 
 
-
+      
       private function updateUser($mobile){
       $data['user_mobile'] = $mobile;
       $data['user_code'] = rand(1001,9999);
       $result = M('User')->where(array('user_mobile'=>cookie('user_mobile')))->save($data);
       if($result!=false){
         //发送验证码
-        //$this->sendCode($data['user_mobile'],$data['user_code']);
-        //由于发送验证码部分未能成功实现暂且不调用
+        $this->sendCode($data['user_mobile'],$data['user_code']);
         $this->successReturn("验证码已成功");
       }else {
         $this->errorReturn('新增用户数据失败');
@@ -114,7 +118,7 @@ class UserController extends Controller{
     * 发送验证码
     */
     private function sendCode($phone,$code){
-        $remote_server = "http://www.cybergear-cn.com/ACM/send.php?phone=".$phone."&code=".$code;
+        $remote_server = "http://www.cybergear-cn.com/ACM/official/updatePhone.php?mobile=".$phone."&code=".$code;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $remote_server);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -147,6 +151,7 @@ class UserController extends Controller{
         $data['user_number']=I('post.number');
         $data['user_name']=I('post.name');
         $data['user_mobile']=I('post.mobile');
+        $data['user_sex']=I('post.sex');
         $this->checkData($data);
         M('User')->where(array('user_mobile'=>cookie('user_mobile')))->save($data);
         $this->loginSuccess($data['user_mobile']);
@@ -155,7 +160,7 @@ class UserController extends Controller{
       if($this->checkUserCode($data['user_mobile'],$data['user_code'])){
         M('User')->where(array('user_mobile'=>cookie('user_mobile')))->save($data);
         M('Lost')->where(array('lost_mobile'=>cookie('user_mobile')))->setField(array('lost_mobile'=>$data['user_mobile']));
-        M('Lost')->where(array('find_mobile'=>cookie('user_mobile')))->setField(array('find_mobile'=>$data['user_mobile']));
+        M('Find')->where(array('find_mobile'=>cookie('user_mobile')))->setField(array('find_mobile'=>$data['user_mobile']));
         $this->loginSuccess($data['user_mobile']);
       }else {
         $this->errorReturn('验证码错误');
@@ -171,6 +176,7 @@ class UserController extends Controller{
       $data['user_name'] = I('post.name');
       $data['user_mobile'] = I('post.mobile');
       $data['user_code'] = I('post.code');
+      $data['user_sex'] =I('post.sex');
       $this->checkData($data);
       return $data;
     }
@@ -179,8 +185,8 @@ class UserController extends Controller{
 
 
      private function checkData($data){
-     if(($data['user_number']==null||$data['user_number']=='')||($data['user_number']==null||$data['user_number']=='')||($data['user_mobile']==null||$data['user_mobile']=='')){
-         $this->errorReturn('学号，姓名，手机号不能为空');
+     if(($data['user_number']==null||$data['user_number']=='')||($data['user_number']==null||$data['user_number']=='')||($data['user_mobile']==null||$data['user_mobile']=='')||($data['user_sex']==null||$data['user_sex']=='')){
+         $this->errorReturn('学号、姓名、性别、手机号不能为空');
      }
     }
     
@@ -200,12 +206,39 @@ class UserController extends Controller{
 
 
      /*
-    * 用户登录
+    * 信息提交
     */
     public function loginSuccess($mobile){
       cookie('user_mobile',null);
-      cookie('user_mobile',$mobile);
-      $this->successReturn('验证成功');
+      cookie('user_mobile',$mobile,3600*24*30);
+      $this->successReturn('提交成功');
+	  $this->redirect("Home/User/index");
+    }
+    /**
+     * 退出重新登录
+     */
+    public function logout(){
+       cookie('user_mobile',null);
+       cookie('key',null);
+      $this->redirect('Home/index/login');
+    }
+    /**
+     * 验证cookie
+     */
+    public function checkCookie(){
+    $result=M('User')->where(array('user_mobile'=>cookie('user_mobile')))->find();
+    $s1=$result['user_mobile'];
+    $s2=$result['user_salt'];
+    $str1=$s1.$s2;
+    $str2=cookie('user_mobile').cookie('key');
+    if((!empty(cookie('user_mobile')))&&(!empty(cookie('key')))){
+     if(md5($str1)===md5($str2)){
+       return true;
+    }else{
+      return false;
+     }
+    }
+    return false;
     }
 }
 ?>

@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Basic.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/tableStyle.css">
 <title>失物招领列表</title>
 </head>
 <body>
 <h1>
 南苑校园所有失物详情
 </h1>
-<hr>
-<table style="width:800px ;border:1px solid gray; border-radius:5px;">
+ <div style="width:100%;height:5px">
+       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
+       </div>
+ </div>
+<table class="imagetable">
 <tr>
 <td>
 <label>失物人的学号：</label>
@@ -23,11 +31,29 @@
 </tr>
 <tr>
 <td>
+<label>失物人的联系电话：</label>
+<span><p>{$row['lost_mobile']}</p></span>
+</td>
+</tr>
+<tr>
+<td>
 <label>失物人的备注：</label>
 <span><p>{$row['lost_desc']}</p></span>
 </td>
 </tr>
+<tr>
+<td>
+<label>失物提交时间：</label>
+<span><p><?php echo date("Y-m-d",$row['time']);?></p></span>
+</td>
+</tr>
 </table>
+ <div style="width:100%;height:5px">
+       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
+       </div>
+ </div>
 <button onclick="fullMsg()" >个人信息</button>
 <button onclick="alllost()" >所有失物</button>
 <button onclick="pindex()" >个人失物</button>

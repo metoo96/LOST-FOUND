@@ -1,13 +1,20 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="/ACM/official/lost_found/Public/css/FindAdd.css">
 <title>
 个人失物新建报失
 </title>
 </head>
 <body style="margin:10px auto;">
 <h1>个人失物报失详情</h1>
-<hr>
+  <div style="width:100%;height:5px">
+       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
+       </div>
+   </div>
   <table style="margin:10px auto;"> 
       <tr style="display:none">
       <td>
@@ -22,18 +29,20 @@
       </tr>
       <tr>
       <td>
-      <label><span>失物人的姓名: </span></label>
+      <label><span>失物人的姓名：</span></label>
       <input type="text" name="lost_name" value="<?php echo ($row['lost_name']); ?>" disabled="true" size="30" />
       </td>
       </tr>
       <tr>
       <td>
-      <label><span>如需修改备注信息,请修改备注信息后点击修改按钮</span></label>
+      <label><span class="Msg">如有需要,可修改备注信息</span></label>
       </td>
       </tr>
+
       <tr>
       <td>
-      <label><span>失物人的备注信息:</span></label>
+      <br>
+      <label><span>备注信息:</span></label>
       <textarea name="lost_desc" id="lostdesc"/><?php echo ($row['lost_desc']); ?> </textarea>
       </td>
       </tr>
@@ -48,6 +57,12 @@
       </td>
       </tr>
  </table>
+  <div style="width:100%;height:5px">
+       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
+       </div>
+   </div>
    <div style="visibility:hidden;display:none">
          <div id="getLostDescAjax">
             <?php echo U('Home/Personal/lostdetailAjax');?>
@@ -71,8 +86,8 @@
 <?php echo U('Home/Personal/lostadd');?>
 </div>
 </div>
-      <script type="text/javascript" src="/campus/Public/js/jquery-2.2.4.min.js"></script>
-      <script type="text/javascript" src="/campus/Public/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/ACM/official/lost_found/Public/js/jquery-2.2.4.min.js"></script>
+      <script type="text/javascript" src="/ACM/official/lost_found/Public/js/bootstrap.min.js"></script>
       <script type="text/javascript">
 
 
@@ -101,8 +116,6 @@
                }
             })
          }
-
-
 
 
       var back = function(){

@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Basic.css">
 <title>
 个人失物
 </title>
 </head>
 <body>
-<span><h1>个人失物</h1></span><hr>
-<button onclick="back()" >返回</button>
-<button onclick="fullMsg()" >个人信息</button>
-<button onclick="lostlist()" >我的报失</button>
-<button onclick="lostadd()" >新建报失</button>
+<span><h1>个人失物</h1></span>
+   <div style="width:100%;height:5px">
+       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
+       </div>
+       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
+       </div>
+   </div>
 <div style="visibility:hidden;display:none">
 <div id="userindex">
 {:U('Home/User/index')}
@@ -25,6 +29,10 @@
 {:U('Home/Personal/lostadd')}
 </div>
 </div>
+<button onclick="back()" >返回</button>
+<button onclick="fullMsg()" >个人信息</button>
+<button onclick="lostlist()" >我的报失</button>
+<button onclick="lostadd()" >新建报失</button>
 	    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
 		<script type="text/javascript">

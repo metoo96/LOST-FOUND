@@ -14,7 +14,7 @@
 <button onclick="pendingorder()" >待审核失物订单</button>
 <button onclick="onlineorder()" >上线失物订单</button>
 <button onclick="allorder()" >所有失物订单</button>
-<button onclick="pfindadd()" >注销</button>
+<button onclick="logout()" >退出</button>
 </div>
 <div style="float:right; width:80%;height:650px;background:#B0BEF9">
 <div style="text-align:center">
@@ -32,12 +32,13 @@
 <div id="allorder">
 <?php echo U('Admin/Admin/allOrder');?>
 </div>
-<div id="personalfindadd">
-<?php echo U('Home/Personal/findadd');?>
+<div id="logoutAjax">
+<?php echo U('Admin/login/logoutAjax');?>
 </div>
 </div>
-	    <script type="text/javascript" src="/campus/Public/js/jquery-2.2.4.min.js"></script>
-		<script type="text/javascript" src="/campus/Public/js/bootstrap.min.js"></script>
+</div>
+	    <script type="text/javascript" src="/lost_found/Public/js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="/lost_found/Public/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 		var pendingorder = function(){
 			window.location.href = $('#pendingorder').html();
@@ -48,9 +49,14 @@
 		var allorder = function(){
 			window.location.href = $('#allorder').html();
 		}
-		var pfindadd = function(){
-			window.location.href = $('#personalfindadd').html();
+		var logout = function(){
+		var r=confirm("确定退出该系统？");
+		if(r==true){
+			window.location.href = $('#logoutAjax').html();
+		}else{
+		
 		}
+	   }
        </script>
 </body>
 </html>
