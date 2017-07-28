@@ -11,7 +11,9 @@
 }
 body  button{
 	min-width: 300px;
-  border-radius: 50px;
+  height:100px;
+  background-color:green;
+  border-radius: 20px;
   background: transparent;
   padding: 20px 50px;
   border: 2px solid 39EF15;

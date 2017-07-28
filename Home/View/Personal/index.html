@@ -1,54 +1,135 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Basic.css">
-<title>
-个人失物
-</title>
-</head>
-<body>
-<span><h1>个人失物</h1></span>
-   <div style="width:100%;height:5px">
-       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
-       </div>
-   </div>
-<div style="visibility:hidden;display:none">
-<div id="userindex">
-{:U('Home/User/index')}
-</div>
-<div id="fullMsg">
-{:U('Home/User/fullMsg')}
-</div>
-<div id="personallostlist">
-{:U('Home/Personal/lostlist')}
-</div>
-<div id="personallostadd">
-{:U('Home/Personal/lostadd')}
-</div>
-</div>
-<button onclick="back()" >返回</button>
-<button onclick="fullMsg()" >个人信息</button>
-<button onclick="lostlist()" >我的报失</button>
-<button onclick="lostadd()" >新建报失</button>
-	    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>lost_found</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
-		<script type="text/javascript">
-		var back = function(){
-			window.location.href = $('#userindex').html();
-		}
-		var fullMsg = function(){
-			window.location.href = $('#fullMsg').html();
-		}
-		var lostlist = function(){
-			window.location.href = $('#personallostlist').html();
-		}
-		var lostadd = function(){
-			window.location.href = $('#personallostadd').html();
-		}
+	</head>
+	<body>
+		
+		<div class="page-header">
+		  <h4>个人失物模块</h4>
+		</div>
 
-</script>
-</body>
+		<ul class="list-group">
+
+		    <div align="right" style="margin-bottom: 1em">
+			<a href="{:U('Home/Personal/lostadd')}" class ="btn btn-primary">
+		    新建个人报失
+		    </a>
+		    </div>
+
+		  <foreach name="list" item="l" >
+				<a  href="{:U('BackgroundAdmin/SchoolmateMien/showNewsPage',array('id'=>$news['id']))}">
+				  <li class="list-group-item listItems">
+				  	<div class="row">
+					  <div class="col-xs-7 col-sm-7 col-md-7">
+					  	<font style="color:#666">
+								  	
+							失物人的学号：{$l['lost_number']}
+							失物人的姓名：{$l['lost_name']}
+							失物时间：<?php echo date('Y-m-d',$l['time']); ?>
+							失物描述：{$l['lost_type']}
+
+		   				 </font>
+					  	<div style="width: 90%;margin-left: 5%">
+						   
+					  	</div>
+					    
+					  </div>
+					  <div class="col-xs-5 col-sm-5 col-md-5" align="right">
+					  	    <a class="btn btn-primary" href="{:U('Home/Personal/lostDetail',array('lost_id'=>$l['lost_id']))}" style="text-decoration:none;">详情
+							</a>
+					  </div>
+					</div>
+				  </li>
+			  </a>
+			   </foreach>	
+		</ul>
+		 <h3>{$page}</h3>
+		  <form method="post" action="{:U('Home/Personal/index')}">
+          <label id="lblSelect">
+          <select class="form-control" name="p" selected="p" id="selectStyle">
+          <?php for($i=1;$i<=($count/5+1);$i++){?>
+          <option><?php echo $i; ?></a></option>
+          <?php } ?>
+          </select>
+          </label>
+          <input class="btn btn-default" type="submit" value="跳转">
+          </form>
+
+        <div style="visibility:hidden;display:none">
+		<div id="pendingAllEdit">
+		{:U('Admin/Admin/pendingOrderAllEditAjax')}
+		</div>
+		<div id="pendingAllDel">
+		{:U('Admin/Admin/pendingOrderAllDelAjax')}
+		</div>
+		<div id="adminindex">
+		{:U('Admin/Admin/index')}
+		</div>
+		</div>
+		<script type="text/javascript">
+	
+		   //关闭操作
+		   var Alldel= function(){
+		      var r=confirm("确定全部关闭？");
+             if (r==true)
+             {
+            $.ajax({
+               url:$('#pendingAllDel').html(),
+               //请求成功
+               success:function(res){
+                  if(res.success){
+                      alert(res.msg);
+                      window.location.href = $('#adminindex').html();
+                  }else {
+                     alert(res.errmsg);
+                  }
+               },
+               //请求失败
+               error:function(){
+                  alert('网络错误');
+               }
+            })
+         }else{
+	
+		 }
+		 }
+		 
+		
+        var Alledit=function ()
+        {
+        var r=confirm("确定全部通过？");
+        if (r==true)
+        {
+               $.ajax({
+               url:$('#pendingAllEdit').html(),
+               //请求成功
+               success:function(res){
+                  if(res.success){
+                      alert(res.msg);
+                      window.location.href = $('#adminindex').html();
+                  }else {
+                     alert(res.errmsg);
+                  }
+               },
+               //请求失败
+               error:function(){
+                  alert('网络错误');
+               }
+            })
+        }
+      else
+        {
+       
+        }
+        }
+     </script>		
+
+	</body>
 </html>

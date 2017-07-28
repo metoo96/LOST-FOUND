@@ -1,93 +1,46 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/Basic.css">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/tableStyle.css">
-<title>失物招领列表</title>
-</head>
-<body>
-<h1>
-南苑校园所有失物详情
-</h1>
- <div style="width:100%;height:5px">
-       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
-       </div>
- </div>
-<table class="imagetable">
-<tr>
-<td>
-<label>失物人的学号：</label>
-<span><p>{$row['lost_number']}</p></span>
-</td>
-</tr>
-<tr>
-<td>
-<label>失物人的姓名：</label>
-<span><p>{$row['lost_name']}</p></span>
-</td>
-</tr>
-<tr>
-<td>
-<label>失物人的联系电话：</label>
-<span><p>{$row['lost_mobile']}</p></span>
-</td>
-</tr>
-<tr>
-<td>
-<label>失物人的备注：</label>
-<span><p>{$row['lost_desc']}</p></span>
-</td>
-</tr>
-<tr>
-<td>
-<label>失物提交时间：</label>
-<span><p><?php echo date("Y-m-d",$row['time']);?></p></span>
-</td>
-</tr>
-</table>
- <div style="width:100%;height:5px">
-       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
-       </div>
- </div>
-<button onclick="fullMsg()" >个人信息</button>
-<button onclick="alllost()" >所有失物</button>
-<button onclick="pindex()" >个人失物</button>
-<button onclick="pfindadd()" >捡到失物</button>
-<div style="visibility:hidden;display:none">
-<div id="fullMsg">
-{:U('Home/User/fullMsg')}
-</div>
-<div id="alllost">
-{:U('Home/AllLost/lostlist')}
-</div>
-<div id="personalindex">
-{:U('Home/Personal/index')}
-</div>
-<div id="personalfindadd">
-{:U('Home/Personal/findadd')}
-</div>
-</div>
-	    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>lost_found</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
-		<script type="text/javascript">
-		var fullMsg = function(){
-			window.location.href = $('#fullMsg').html();
-		}
-		var alllost = function(){
-			window.location.href = $('#alllost').html();
-		}
-		var pindex = function(){
-			window.location.href = $('#personalindex').html();
-		}
-		var pfindadd = function(){
-			window.location.href = $('#personalfindadd').html();
-		}
-
-</script>
-</body>
+	</head>
+    <body>
+		
+		<div class="page-header">
+		  <h4>所有失物详情模块</h4>
+		</div>
+		
+					  	<font style="color:#666">
+						    <li class="list-group-item listItems">
+							失物人的学号：{$row['lost_number']}
+							</li>
+							<li class="list-group-item listItems">
+							失物人的姓名：{$row['lost_name']}
+							</li>
+							<li class="list-group-item listItems">
+							提交时间：<?php echo date('Y-m-d',$row['time']); ?>
+							</li>
+							<li class="list-group-item listItems">
+							失物描述：{$row['lost_desc']}
+							</li>
+							<li class="list-group-item listItems">
+							失物类型:{$row['lost_type']}
+							</li>
+							<li class="list-group-item listItems">
+							失物人手机：{$row['lost_mobile']}
+							</li>
+							<li class="list-group-item listItems">
+							失物是否找到：<?php if($row['mark']==1){
+								echo "是";
+								}else{
+								echo "否";
+								} ?>
+						    </li>
+		   				 </font>
+     </body>
 </html>

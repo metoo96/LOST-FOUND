@@ -75,7 +75,7 @@ class LoginController extends Controller {
      *退出
      * @return [type] [description]
      */
-     public function logoutAjax(){
+     public function logout(){
     	cookie('key',null);
       cookie('username',null);
       $this->redirect('Admin/Login/index');

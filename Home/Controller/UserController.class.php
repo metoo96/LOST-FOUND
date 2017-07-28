@@ -14,6 +14,16 @@ class UserController extends Controller{
           $this->display();
      }
 
+     /**
+      * 提交&修改后的暂时（中转）界面
+      * [temp description]
+      * @return [type] [description]
+      */
+     public function temp()
+     {
+          $this->display();
+     }
+
 
 
      public function fullMsg(){
@@ -211,7 +221,7 @@ class UserController extends Controller{
     public function loginSuccess($mobile){
       cookie('user_mobile',null);
       cookie('user_mobile',$mobile,3600*24*30);
-      $this->successReturn('提交成功');
+      $this->successReturn('修改成功');
 	  $this->redirect("Home/User/index");
     }
     /**

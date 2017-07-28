@@ -1,139 +1,106 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/FindAdd.css">
-<title>
-个人失物新建报失
-</title>
-</head>
-<body style="margin:10px auto;">
-<h1>个人失物报失详情</h1>
-  <div style="width:100%;height:5px">
-       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
-       </div>
-   </div>
-  <table style="margin:10px auto;"> 
-      <tr style="display:none">
-      <td>
-       <input type="text" id="id" value="{$row['lost_id']}">
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <label><span>失物人的学号：</span></label>
-      <input type="text" name="lost_number" value="{$row['lost_number']}" id="number" disabled="true"size="30"/>
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <label><span>失物人的姓名：</span></label>
-      <input type="text" name="lost_name" value="{$row['lost_name']}" disabled="true" size="30" />
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <label><span class="Msg">如有需要,可修改备注信息</span></label>
-      </td>
-      </tr>
-
-      <tr>
-      <td>
-      <br>
-      <label><span>备注信息:</span></label>
-      <textarea name="lost_desc" id="lostdesc"/>{$row['lost_desc']} </textarea>
-      </td>
-      </tr>
-      <tr>
-         <td>
-         <button onclick="changeDesc()">修改</button>
-         </td>
-      </tr>
-      <tr>
-      <td>
-      <h1 style="color:red">{$result}</h1>
-      </td>
-      </tr>
- </table>
-  <div style="width:100%;height:5px">
-       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
-       </div>
-   </div>
-   <div style="visibility:hidden;display:none">
-         <div id="getLostDescAjax">
-            {:U('Home/Personal/lostdetailAjax')}
-         </div>
-  </div>
-<button onclick="back()" >返回</button>
-<button onclick="fullMsg()" >个人信息</button>
-<button onclick="lostlist()" >我的报失</button>
-<button onclick="lostadd()" >新建报失</button>
-<div style="visibility:hidden;display:none">
-<div id="personallist">
-{:U('Home/Personal/lostlist')}
-</div>
-<div id="fullMsg">
-{:U('Home/User/fullMsg')}
-</div>
-<div id="personallostlist">
-{:U('Home/Personal/lostlist')}
-</div>
-<div id="personallostadd">
-{:U('Home/Personal/lostadd')}
-</div>
-<div id="loginindex">
-      {:U('Home/User/index')}
-   </div>
-</div>
+<html lang="">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>lost_found</title>
+      <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
       <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
       <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
-      <script type="text/javascript">
+   </head>
+    <body>
+      
+      <div class="page-header">
+        <h4>个人失物详情模块</h4>
+      </div>
+      
+                  <font style="color:#666">
+                     <div style="display:none">
+                     <td>
+                     <input type="text" id="id" value="{$row['lost_id']}">
+                     </td>
+                     </div>
+                      <li class="list-group-item listItems">
+                     失物人的学号:
+                     <input disabled="true" class="form-control" type="text" id="number" value="{$row['lost_number']}">
+                     </li>
+                     <li class="list-group-item listItems">
+                     失物人的姓名：{$row['lost_name']}
+                     </li>
+                     <li class="list-group-item listItems">
+                     提交时间：<?php echo date('Y-m-d',$row['time']); ?>
+                     </li>
+                     <li class="list-group-item listItems">
+                     失物类型:{$row['lost_type']}
+                     </li>
+                     <li class="list-group-item listItems">
+                     失物是否找到：<?php if($row['mark']==1){
+                        echo "是";
+                        }else{
+                        echo "否";
+                        } ?>
+                       </li>
+                        <tr>
+                        <td>
+                        <label><span class="Msg">如有需要,可修改备注信息</span></label>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>
+                        <label class="text-warning"><span>备注信息:</span></label>
+                        <textarea class="form-control" name="lost_desc" id="lostdesc"/>{$row['lost_desc']}
+                        </textarea>
+                        </td>
+                        </tr>
+               </font>
+
+               <tr>
+               <td>
+               <label class="text-warning"><span>  </span></label>
+               <button class="form-control btn-warning" onclick="changeDesc()">修改</button>
+               </td>
+               </tr>
 
 
-            //点击提交按钮时进行验证
-         var changeDesc = function(){
-            var data = {
-               desc:$('#lostdesc').val(),
-               number:$('#number').val(),
-               id:$('#id').val()
-            }
-            $.ajax({
-               url:$('#getLostDescAjax').html(),
-               type:'post',
-               data:data,
-               //请求成功
-               success:function(res){
-                  if(res.success){
-                      alert(res.msg);
-                      window.location.href = $('#loginindex').html();
-                  }else {
-                     alert(res.errmsg);
+               <div style="visibility:hidden;display:none">
+                  <div id="getLostDescAjax">
+                  {:U('Home/Personal/lostdetailAjax')}
+                  </div>
+                  <div id="loginindex">
+                  {:U('Home/Personal/index')}
+                  </div>
+              </div>
+              <script type="text/javascript">           
+
+                     //点击提交按钮时进行验证
+                  var changeDesc = function(){
+                     var data = {
+                        desc:$('#lostdesc').val(),
+                        number:$('#number').val(),
+                        id:$('#id').val()
+                     }
+                     $.ajax({
+                        url:$('#getLostDescAjax').html(),
+                        type:'post',
+                        data:data,
+                        //请求成功
+                        success:function(res){
+                           if(res.success){
+                               alert(res.msg);
+                               window.location.href = $('#loginindex').html();
+                           }else {
+                              alert(res.errmsg);
+                           }
+                        },
+                        //请求失败
+                        error:function(){
+                           alert('网络错误');
+                        }
+                     })
                   }
-               },
-               //请求失败
-               error:function(){
-                  alert('网络错误');
-               }
-            })
-         }
 
-
-      var back = function(){
-         window.location.href = $('#personallist').html();
-      }
-      var fullMsg = function(){
-         window.location.href = $('#fullMsg').html();
-      }
-      var lostlist = function(){
-         window.location.href = $('#personallostlist').html();
-      }
-      var lostadd = function(){
-         window.location.href = $('#personallostadd').html();
-      }
-         </script>
-</body>
+                  </script>
+     </body>
 </html>

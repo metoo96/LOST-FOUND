@@ -7,6 +7,7 @@ class AllLostController extends Controller{
        parent::__construct();
        $this->lostmodel=D('Lost');
 	}
+
 	/**
 	 * 列出所有失物信息
 	 * @return [type] [description]
@@ -28,6 +29,19 @@ class AllLostController extends Controller{
 			$this->redirect('Home/index/login');
 		}
 	}
+
+
+    /**
+     * 列出失物最新五条
+     * [lostdetail description]
+     * @return [type] [description]
+     */
+    public function newlost()
+    {
+          $list = $this->lostmodel->field('lost_type,lost_number,lost_name,time')->order('lost_id desc')->limit(5)->select();
+          $this->ajaxReturn($list);
+    }
+
 	public function lostdetail(){
 		$row=$this->lostmodel->find(I('get.lost_id'));
 		$this->assign('row',$row);

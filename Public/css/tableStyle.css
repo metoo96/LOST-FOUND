@@ -6,23 +6,23 @@ table.imagetable {
     font-family: 微软雅黑,sans-serif;  
     font-size:30px;  
     font
-    color:white;  
+    color:gray;  
     border-width: 2px;  
-    border-color: #a9f7f7;  
+    border-color: ;  
     border-collapse: collapse;  
     
 }  
 table.imagetable td {  
-    background:#dcddc0 url('../img/table.jpg');  
+    background:white;
     border-width: 2px;  
     padding: 8px;  
-    color:white; 
+    color:gray; 
     border-style: solid;  
-    border-color: #a9f7f7;  
+    border-color: #CCCCCC;  
     
 }  
 table a{
 	float: right;
 	text-align: right;
-	color:white; 
+	color:blue; 
 }

@@ -45,10 +45,10 @@ class AdminController extends Controller{
 	   if($this->checkCookie()){
        	$p = I('p')?I('p'):1;
         // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
-        $list = M('Lost')->where(array('temp'=>0))->order('time desc')->page($p.',20')->select();
+        $list = M('Lost')->where(array('temp'=>0))->order('time desc')->page($p.',12')->select();
         $this->assign('list',$list);// 赋值数据集
         $count      = M('Lost')->where(array('temp'=>0))->count();// 查询满足要求的总记录数
-        $Page       = new \Think\Page($count,20);// 实例化分页类 传入总记录数和每页显示的记录数
+        $Page       = new \Think\Page($count,12);// 实例化分页类 传入总记录数和每页显示的记录数
         $show       = $Page->show();// 分页显示输出
         $this->assign('page',$show);// 赋值分页输出
         $this->display(); 
@@ -165,10 +165,10 @@ class AdminController extends Controller{
 		if($this->checkCookie()){
 	   	$p = I('p')?I('p'):1;
         // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
-        $list = M('Lost')->where(array('temp'=>1))->order('time desc')->page($p.',20')->select();
+        $list = M('Lost')->where(array('temp'=>1))->order('time desc')->page($p.',12')->select();
         $this->assign('list',$list);// 赋值数据集
         $count      = M('Lost')->where(array('temp'=>1))->count();// 查询满足要求的总记录数
-        $Page       = new \Think\Page($count,20);// 实例化分页类 传入总记录数和每页显示的记录数
+        $Page       = new \Think\Page($count,12);// 实例化分页类 传入总记录数和每页显示的记录数
         $show       = $Page->show();// 分页显示输出
         $this->assign('page',$show);// 赋值分页输出
         $this->display();
@@ -199,13 +199,13 @@ class AdminController extends Controller{
      * @return [type] [description]
      */
 	public function allOrder(){
-		if($this->checkCookie()){
-	 	$p = I('p')?I('p'):1;
+		 if($this->checkCookie()){
+	 	    $p = I('p')?I('p'):1;
         // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
-        $list = M('Lost')->order('time desc')->page($p.',20')->select();
+        $list = M('Lost')->order('time desc')->page($p.',12')->select();
         $this->assign('list',$list);// 赋值数据集
         $count      = M('Lost')->count();// 查询满足要求的总记录数
-        $Page       = new \Think\Page($count,20);// 实例化分页类 传入总记录数和每页显示的记录数
+        $Page       = new \Think\Page($count,12);// 实例化分页类 传入总记录数和每页显示的记录数
         $show       = $Page->show();// 分页显示输出
         $this->assign('page',$show);// 赋值分页输出
         $this->display(); 
@@ -215,8 +215,8 @@ class AdminController extends Controller{
     }
     public function allOrderDetail(){
 	    $row=M('Lost')->where(array('lost_id'=>I('get.lost_id')))->find();
-		$this->assign('row',$row);
-		$this->display();
+		  $this->assign('row',$row);
+		  $this->display();
     }
 
 
