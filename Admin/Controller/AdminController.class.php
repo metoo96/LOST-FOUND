@@ -63,7 +63,7 @@ class AdminController extends Controller{
 
 	}
 	public function pendingOrderDelAjax(){
-    	$data['lost_id'] = I('post.id');
+    $data['lost_id'] = I('post.id');
 		$result=M('Lost')->where(array('lost_id'=>$data['lost_id']))->delete();
 		if($result!==false){
 			$this->successReturn('关闭成功');
@@ -125,7 +125,7 @@ class AdminController extends Controller{
 				M('Lost')->where(array('lost_id'=>$value['lost_id']))->setField(array('mark'=>1));
         M('find')->where(array('find_id'=>$v['find_id']))->setField(array('mark'=>1));
 					    $this->sendMsg($value['lost_mobile'],$v['find_mobile']);
-					    //失由于发信息给物人部分未能实现所以暂且不调用
+					    //发信息给物人
 					    $this->successReturn('查询有这个');
 					}
 				}

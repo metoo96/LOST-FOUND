@@ -27,7 +27,7 @@
 		    </div>
 
 		  <foreach name="list" item="l" >
-				<a  href="{:U('BackgroundAdmin/SchoolmateMien/showNewsPage',array('id'=>$news['id']))}">
+			  <a  href="{:U('Admin/Admin/pendingOrderDetail',array('lost_id'=>$l['lost_id']))}" style="text-decoration:none;">
 				  <li class="list-group-item listItems">
 				  	<div class="row">
 					  <div class="col-xs-7 col-sm-7 col-md-7">
@@ -67,7 +67,7 @@
 		{:U('Admin/Admin/pendingOrderAllDelAjax')}
 		</div>
 		<div id="adminindex">
-		{:U('Admin/Admin/index')}
+		
 		</div>
 		</div>
 		<script type="text/javascript">

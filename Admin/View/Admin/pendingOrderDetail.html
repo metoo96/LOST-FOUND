@@ -18,6 +18,9 @@
 		        <ul class="list-group">
 				  	<div class="row">
 					  <div class="col-xs-7 col-sm-7 col-md-7">
+					    <div style="visibility:none;display:none">
+                            <input type="text" id="id" value="{$row['lost_id']}">
+					  	</div>
 					  	<font style="color:#666">
 					  	    <li class="list-group-item listItems">
 						    失物编号：{$row['lost_id']}
@@ -117,14 +120,14 @@
 			               id:$('#id').val()
 			            }
 			            $.ajax({
-			               url:$('#onlineorderdel').html(),
+			               url:$('#pendingorderdel').html(),
 			               type:'post',
 			               data:data,
 			               //请求成功
 			               success:function(res){
 			                  if(res.success){
 			                      alert(res.msg);
-			                      window.location.href = $('#onlineorder').html();
+			                      window.location.href = $('#pendingorder').html();
 			                  }else {
 			                     alert(res.errmsg);
 			                  }
