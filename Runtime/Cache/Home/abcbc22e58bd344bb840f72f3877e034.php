@@ -9,12 +9,10 @@
 </head>
 <body style="margin:10px auto;">
 <h1>个人失物报失详情</h1>
-  <div style="width:100%;height:5px">
-       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
+ <div style="width:100%;height:5px">
+       <div style="float:right;width:100%;height:5px;background-color:#22DD48">
        </div>
-       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
-       </div>
-   </div>
+ </div>
   <table style="margin:10px auto;"> 
       <tr style="display:none">
       <td>
@@ -57,12 +55,10 @@
       </td>
       </tr>
  </table>
-  <div style="width:100%;height:5px">
-       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
+ <div style="width:100%;height:5px">
+       <div style="float:right;width:100%;height:5px;background-color:#22DD48">
        </div>
-       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
-       </div>
-   </div>
+ </div>
    <div style="visibility:hidden;display:none">
          <div id="getLostDescAjax">
             <?php echo U('Home/Personal/lostdetailAjax');?>
@@ -85,6 +81,9 @@
 <div id="personallostadd">
 <?php echo U('Home/Personal/lostadd');?>
 </div>
+<div id="loginindex">
+      <?php echo U('Home/User/index');?>
+   </div>
 </div>
       <script type="text/javascript" src="/ACM/official/lost_found/Public/js/jquery-2.2.4.min.js"></script>
       <script type="text/javascript" src="/ACM/official/lost_found/Public/js/bootstrap.min.js"></script>
@@ -106,6 +105,7 @@
                success:function(res){
                   if(res.success){
                       alert(res.msg);
+                      window.location.href = $('#loginindex').html();
                   }else {
                      alert(res.errmsg);
                   }

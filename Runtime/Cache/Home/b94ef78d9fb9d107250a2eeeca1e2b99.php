@@ -11,12 +11,10 @@
 <h1>
 个人失物失物列表
 </h1>
-  <div style="width:100%;height:5px">
-       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
+<div style="width:100%;height:5px">
+       <div style="float:right;width:100%;height:5px;background-color:#22DD48">
        </div>
-       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
-       </div>
-   </div>
+ </div>
 <table class="imagetable">
 <?php if(is_array($list)): foreach($list as $key=>$list): ?><tr>
 <td>
@@ -52,11 +50,9 @@
 </tr>
 </table>
   <div style="width:100%;height:5px">
-       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
+       <div style="float:right;width:100%;height:5px;background-color:#22DD48">
        </div>
-       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
-       </div>
-   </div>
+ </div>
 <button onclick="back()" >返回</button>
 <button onclick="fullMsg()" >个人信息</button>
 <button onclick="lostlist()" >我的报失</button>

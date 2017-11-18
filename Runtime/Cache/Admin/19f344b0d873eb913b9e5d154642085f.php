@@ -1,51 +1,61 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>
-南苑校园失物招领系统后台
-</title>
-<style>
-body{
-	background-color:gray;
-}
-#user{
-	text-align:center;
-	background-color:#B0BEF9;
-	opacity:0.9;
-	width:50%;
-	height:300px;
-	margin-left:25%;
-	border:3px solid green;
-	border-radius:10px;
-}
-</style>
-</head>
-<body>
-<h1 style="text-align:center;">南苑校园失物招领系统后台登录</h1>
-	  <div id="user">
-		  <div>
-		     <h3>账号：<input type="text" placeholder="用户名" id="username"/></h3>	
-		  </div><br>
-		      <h3>密码：<input type="text" placeholder="密码" id="password"></h3>
-		  <div id="btnDiv" style="margin-top: 5%">
-					<button  onclick="check()" >
-			        登     录   
-				    </button>
-		  </div>
-     </div>
-		<div style="visibility:hidden;display:none">
-			<div id="checklogin">
-				<?php echo U('Admin/Login/checkloginAjax');?>
-			</div>
-			<div id="loginindex">
-			    <?php echo U('Admin/Admin/index');?>
-			</div>
-		</div>
-
+<?php if (!defined('THINK_PATH')) exit();?>﻿<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>校园失物招领后台登录</title>
+		<link rel="icon" type="image/x-icon" href="/lost_found/Public/res/nf.icon" />
+		<link rel="stylesheet" type="text/css" href="/lost_found/Public/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/lost_found/Public/css/indexFrame.css">
 		<script type="text/javascript" src="/lost_found/Public/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="/lost_found/Public/js/bootstrap.min.js"></script>
-		<script type="text/javascript">
+	</head>
+	<body>	
+	    <div class="navbar navbar-duomi navbar-static-top" role="navigation" style="background-color:#262626">
+	        <div class="container-fluid">
+	            <div class="navbar-header" style="color:white;text-align:center">
+	                <h4>校园失物招领后台登录</h4>
+	            </div>
+	        </div>
+	    </div>
+	<div style="width: 30%;margin-left: 35%">
+
+		<div align="center" class="page-header">
+		    <h1>校园失物招领后台登录</h1>
+		</div>
+		<h3>登录</h3>
+		<hr>
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">用户名:</label>
+		    <input type="text" class="form-control" name="username" id="username" placeholder="username" required>
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">密码:</label>
+		    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+		  </div>
+                  
+		  <div class="form-group">
+		  <button onclick="check()" class="btn btn-success">登   录</button>
+                  </div>
+
+	</div>
+	
+	 <div class="footer" style="background-color:#262626">
+	    	<div class="title" >
+	    
+	    	</div>
+	 </div>
+
+			<div style="visibility:hidden;display:none">
+				<div id="checklogin">
+					<?php echo U('Admin/Login/checkloginAjax');?>
+				</div>
+				<div id="loginindex">
+				    <?php echo U('Admin/Admin/index');?>
+				</div>
+			</div>
+			<script type="text/javascript">
             //点击提交按钮时进行验证
 			var check = function(){
 				var data = {

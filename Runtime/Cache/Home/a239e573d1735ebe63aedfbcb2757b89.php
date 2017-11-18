@@ -11,9 +11,7 @@
 南苑校园所有失物详情
 </h1>
  <div style="width:100%;height:5px">
-       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
+       <div style="float:right;width:100%;height:5px;background-color:#22DD48">
        </div>
  </div>
 <table class="imagetable">
@@ -49,9 +47,7 @@
 </tr>
 </table>
  <div style="width:100%;height:5px">
-       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
+       <div style="float:right;width:100%;height:5px;background-color:#22DD48">
        </div>
  </div>
 <button onclick="fullMsg()" >个人信息</button>

@@ -1,99 +1,108 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="/lost_found/Public/css/Basic.css">
-<link rel="stylesheet" type="text/css" href="/lost_found/Public/css/select.css">
-<link rel="stylesheet" type="text/css" href="/lost_found/Public/css/tableStyle.css">
-
-<title>失物招领列表</title>
-</head>
-<body>
-<h1>
-南苑校园所有失物列表
-</h1>
- <div style="width:100%;height:5px">
-       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
-       </div>
- </div>
-</body>
-<table class="imagetable">
-<?php if(is_array($list)): foreach($list as $key=>$list): ?><tr>
-<td>
-<!--学号：<?php echo ($list['lost_number']); ?>;-->
-姓名：<?php echo ($list['lost_name']); ?>;
-失物类型：<?php echo ($list['lost_type']); ?>;
-手机：<?php echo ($list['lost_mobile']); ?>;
-提交时间：<?php echo date("Y-m-d",$list['time']);?>
-<a href="<?php echo U('Home/AllLost/lostdetail',array('lost_id'=>$list['lost_id']));?>" style="text-decoration:none;">详情</a>
-</td>
-</tr>
-<tr>
-<td><?php endforeach; endif; ?>
-<form method="post" action="<?php echo U('Home/AllLost/lostlist');?>">
-<label id="lblSelect">
-<select name="p" selected="p" id="selectStyle">
-<?php for($i=1;$i<=($count/5+1);$i++){?>
-<option><?php echo $i; ?></a></option>
-<?php } ?>
-</select>
-</label>
-<input type="submit" value="跳转">
-</form>
-</td>
-
-</tr>
-<tr>
-<td>
-<h3>
-<?php echo ($page); ?>
-</h3>
-</td>
-</tr>
-</table>
- <div style="width:100%;height:5px">
-       <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:left;width:50%;height:5px;background-color:#22DD48">
-       </div>
- </div>
-<button onclick="fullMsg()" >个人信息</button>
-<button onclick="alllost()" >所有失物</button>
-<button onclick="pindex()" >个人失物</button>
-<button onclick="pfindadd()" >捡到失物</button>
-</div>
-<div style="visibility:hidden;display:none">
-<div id="fullMsg">
-<?php echo U('Home/User/fullMsg');?>
-</div>
-<div id="alllost">
-<?php echo U('Home/AllLost/lostlist');?>
-</div>
-<div id="personalindex">
-<?php echo U('Home/Personal/index');?>
-</div>
-<div id="personalfindadd">
-<?php echo U('Home/Personal/findadd');?>
-</div>
-</div>
-	    <script type="text/javascript" src="/lost_found/Public/js/jquery-2.2.4.min.js"></script>
+<?php if (!defined('THINK_PATH')) exit();?>﻿<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>南苑校园失物招领</title>
+		<link rel="stylesheet" type="text/css" href="/lost_found/Public/css/bootstrap.min.css">
+		<script type="text/javascript" src="/lost_found/Public/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="/lost_found/Public/js/bootstrap.min.js"></script>
-		<script type="text/javascript">
-		var fullMsg = function(){
-			window.location.href = $('#fullMsg').html();
-		}
-		var alllost = function(){
-			window.location.href = $('#alllost').html();
-		}
-		var pindex = function(){
-			window.location.href = $('#personalindex').html();
-		}
-		var pfindadd = function(){
-			window.location.href = $('#personalfindadd').html();
-		}
+	</head>
+	<body>
+           <div style="margin-bottom:100px">
+		
+		<div class="page-header">
+		  <h4><i class="glyphicon glyphicon-th-list"></i> 所有失物模块</h4>
+      <form action="<?php echo U('Home/AllLost/searchLostByType');?>" method="post">
+		  <div class="input-group col-md-3" style="margin-top:0px positon:relative">  
+              <select class="form-control" name="type" id="tyle">
+                        <option value ="校园卡">校园卡</option>
+                        <option value ="学生证">学生证</option>
+                        <option value="书包">书包</option>
+                        <option value="钱包">钱包</option>
+                        <option value="书本">书本</option>
+                        <option value="手机">手机</option>
+                        <option value="电脑">电脑</option>
+                        <option value="其它">其它</option>
+                        </select>
+               <span class="input-group-btn">  
+               <button type="submit" class="btn btn-info btn-search" >查找</button>
+               </span>  
+        </div>  
+        </form>
+		</div>
+     <span class="badge"><?php echo ($count); ?>条记录</span>
+    <table class="table table-striped">
+    <tbody>
+		  <?php if(is_array($list)): foreach($list as $key=>$l): ?><tr>
+                      <td>
+                       <a  href="<?php echo U('Home/AllLost/lostDetail',array('lost_id'=>$l['lost_id']));?>" style="text-decoration:none;">
+                       <img src="/lost_found/Public/<?php echo ($l['thumb_img']); ?>" alt="失物招领" width="50" height="50" style="border:3px solid gray;border-radius:2px;">  <!--失物的缩略图-->
+                       </a>
+                      </td>
+                      <td>
+                      <a  href="<?php echo U('Home/AllLost/lostDetail',array('lost_id'=>$l['lost_id']));?>" style="text-decoration:none;">
+                      <font style="color:#666">
+                     <i class="glyphicon glyphicon-list-alt"></i>失物人的学号:<?php echo ($l['lost_number']); ?>
+                      失物人的姓名:<?php echo ($l['lost_name']); ?>
+                      失物类型:<?php echo ($l['lost_type']); ?>
+                        <i class="glyphicon glyphicon-time"></i>失物时间:<?php echo date('Y-m-d',$l['time']); ?>
+                       </font>
+                       </a>
+                       </td>
+                      <td> 
+                          <a  href="<?php echo U('Home/AllLost/lostDetail',array('lost_id'=>$l['lost_id']));?>" style="text-decoration:none;"><i class="glyphicon glyphicon-chevron-right" style="font-size:28px;"></i>
+                          </a>
+                      </td>
+                    </tr><?php endforeach; endif; ?>	
+       </tbody>
+      </table>
 
-</script>
-</body>
+
+      <h3><?php echo ($page); ?></h3>
+		  <form method="post" action="<?php echo U('Home/AllLost/lostlist');?>">
+          <label id="lblSelect">
+          <select class="form-control" name="p" selected="p" id="selectStyle">
+          <?php for($i=1;$i<=($count/10+1);$i++){?>
+          <option><?php echo $i; ?></a></option>
+          <?php } ?>
+          </select>
+          </label>
+          <input class="btn btn-default" type="submit" value="跳转">
+          </form>
+        </div>
+
+            <div style="visibility:hidden;display:none">
+               <div id="searchLostByType">
+               <?php echo U('Home/AllLost/searchLostByType');?>
+               </div>
+            </div>
+            <script type="text/javascript">
+
+
+            
+                    //点击提交按钮时进行提交
+                     var search = function(){
+                        var data = {
+                           type:$('#tyle').val()
+                        }
+                        $.ajax({
+                           url:$('#searchLostByType').html(),
+                           type:'post',
+                           data:data,
+                           //请求成功
+                           success:function(){
+                             alert("成功");
+                           },
+                           //请求失败
+                           error:function(){
+                              alert('网络错误');
+                           }
+                        })
+                     }
+                
+
+            </script>
+	</body>
 </html>

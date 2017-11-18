@@ -4,17 +4,26 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>lost_found</title>
+      <title>南苑校园失物招领</title>
       <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
       <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
       <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+
+      <style>
+      .max{width:100%;height:200px;}
+      .min{width:100px;height:100px;align:center;}
+      </style>
    </head>
     <body>
       
       <div class="page-header">
-        <h4>个人失物详情模块</h4>
+        <h4><i class="glyphicon glyphicon-bookmark"></i>个人失物详情模块</h4>
       </div>
-      
+                   
+               <li class="list-group-item listItems">
+                       <img src="__PUBLIC__/{$row['thumb_img']}" alt="失物招领" id='img' class="min"  style="border:3px solid gray;border-radius:2px;text-align:center;">  <!--失物的缩略图-->
+                          <p  class="text-warning">(点击图片可放大)</p>
+               </li>
                   <font style="color:#666">
                      <div style="display:none">
                      <td>
@@ -22,8 +31,10 @@
                      </td>
                      </div>
                       <li class="list-group-item listItems">
-                     失物人的学号:
+                     失物人的学号: {$row['lost_number']}
+                     <div style="display:none;visibility:hidden;">
                      <input disabled="true" class="form-control" type="text" id="number" value="{$row['lost_number']}">
+                     </div>
                      </li>
                      <li class="list-group-item listItems">
                      失物人的姓名：{$row['lost_name']}
@@ -100,6 +111,14 @@
                         }
                      })
                   }
+
+
+
+      
+                     $('#img').click(function(){
+                                 $(this).toggleClass('min');
+                                 $(this).toggleClass('max');
+                                 });
 
                   </script>
      </body>

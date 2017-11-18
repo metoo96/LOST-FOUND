@@ -18,7 +18,7 @@
 </head>
 <body style="text-align:center">
 <div id="header">
-<h2>【南苑计协开发部前端招贤通告】</h>
+<h3>【南苑计协开发部前端招贤通告】</h3>
 <h4>
 
 希望你会——

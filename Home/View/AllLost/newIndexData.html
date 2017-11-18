@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>南苑校园失物招领</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div style="margin-top:5px;">
+    <span class="badge" style="color:white;background-color:red;">最新的五条失物信息New</span></a>
+    <table class="table table-striped">
+    <tbody>
+		  <foreach name="list" item="l" >
+		
+                    <tr>
+                      <td>
+                       <a  href="{:U('Home/AllLost/lostDetail',array('lost_id'=>$l['lost_id']))}" style="text-decoration:none;">
+                       <img src="__PUBLIC__/{$l['thumb_img']}" alt="失物招领" width="50" height="50" style="border:3px solid gray;border-radius:2px;">  <!--失物的缩略图-->
+                       </a>
+                      </td>
+                      <td>
+                      <a  href="{:U('Home/AllLost/lostDetail',array('lost_id'=>$l['lost_id']))}" style="text-decoration:none;">
+                      <font style="color:#666">
+                      <span class="badge" style="color:white;background-color:red;">New</span></a>
+                      失物人的学号:{$l['lost_number']}
+                      失物人的姓名:{$l['lost_name']}
+                      失物类型:{$l['lost_type']}
+                      <i class="glyphicon glyphicon-time"></i>失物时间:<?php echo date('Y-m-d',$l['time']); ?>
+                       </font>
+                       </a>
+                       </td>
+                      <td> 
+                          <a  href="{:U('Home/AllLost/lostDetail',array('lost_id'=>$l['lost_id']))}" style="text-decoration:none;"><i class="glyphicon glyphicon-chevron-right" style="font-size:28px;"></i>
+                          </a>
+                      </td>
+                    </tr>
+			   </foreach>	
+       </tbody>
+      </table>
+     </div>
+
+            <div style="visibility:hidden;display:none">
+               <div id="searchLostByType">
+               {:U('Home/AllLost/searchLostByType')}
+               </div>
+            </div>
+            <script type="text/javascript">
+
+
+            
+                    //点击提交按钮时进行提交
+                     var search = function(){
+                        var data = {
+                           type:$('#tyle').val()
+                        }
+                        $.ajax({
+                           url:$('#searchLostByType').html(),
+                           type:'post',
+                           data:data,
+                           //请求成功
+                           success:function(){
+                             alert("成功");
+                           },
+                           //请求失败
+                           error:function(){
+                              alert('网络错误');
+                           }
+                        })
+                     }
+                
+
+            </script>
+	</body>
+</html>

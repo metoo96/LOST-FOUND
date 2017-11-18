@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="">
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>lost_found</title>
+      <title>南苑校园失物招领</title>
       <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
       <script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
       <script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
@@ -12,16 +12,16 @@
    <body>
       
       <div class="page-header">
-        <h4>捡到失物模块</4>
-      </div>            
+        <h4><i class="glyphicon glyphicon-edit"></i> 捡到失物模块</4>
+      </div>       
                   <font style="color:#666">
                         <div class="form-group">
                         <label>失物者学号:</label>
-                        <input class="form-control" type="text" id="lostnumber" placeholder="未知填 0" size="30"/>
+                        <input class="form-control" type="number" id="lostnumber" placeholder="未知填 0" size="20" />
                         </div>
                         <div class="form-group">
                         <label><span>失物者姓名:</span></label>
-                        <input class="form-control" type="text" id="lostname" placeholder="未知填 0" size="30" />
+                        <input class="form-control" type="text" id="lostname" placeholder="未知填 0" size="30"/>
                         </div>
                         <div class="form-group">
                         <label><span>失物类型: </span></label>
@@ -37,16 +37,17 @@
                         <option value="书本">书本</option>
                         <option value="手机">手机</option>
                         <option value="电脑">电脑</option>
+                        <option value="其它">其它</option>
                         </select>
                         </label>
                         </div>
                         <div class="form-group">
                         <label><span>失物备注信息:</span></label>
-                        <textarea class="form-control" rows="2" id="lostdesc" placeholder="失物外形、地点..."/></textarea>
+                        <textarea class="form-control" rows="4" id="lostdesc" placeholder="拾到物品的过程、物品的特征、或别的任何有助于找回失物的信息都可以输入......" /></textarea>
                         </div>
                         <div class="form-group">
                         <label><span>拾物者学号:</span></label>
-                        <input class="form-control" type="text" id="findnumber" size="30"/>
+                        <input class="form-control" type="number" id="findnumber" size="30" />
                         </div>
                         <div class="form-group">
                         <label><span>拾物者姓名: </span></label>
@@ -56,12 +57,13 @@
                         <label><span>拾物者备注信息:</span></label>
                         <textarea class="form-control" rows="2" id="finddesc" /></textarea>
                         </div>
-              <div align="left" style="margin-bottom: 1em;">
-              <button class ="btn btn-primary" onclick="findadd()">
-              提交拾物表单
+              <div align="left" style="margin-bottom: 1em;margin-top:20px;">
+              <button   class ="form-control btn btn-primary" onclick="findadd()">
+                 提交拾物表单
               </button>
              </div>
             </font>
+           
                
 
             <div style="visibility:hidden;display:none">
@@ -72,6 +74,7 @@
                {:U('Home/User/temp')}
                </div>
             </div>
+
             <script type="text/javascript">
 
 
@@ -90,7 +93,6 @@
                      url:$('#personalfindaddAjax').html(),
                      type:'post',
                      data:data,
-                     //请求成功
                      success:function(res){
                         if(res.success){
                            alert(res.msg);
@@ -100,9 +102,9 @@
                         }
                      },
                      //请求失败
-                     error:function(){
+                    error:function(){
                         alert('网络错误');
-                     }
+                    }
                   })
                }
 

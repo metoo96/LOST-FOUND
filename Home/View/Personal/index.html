@@ -1,66 +1,77 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>lost_found</title>
+		<title>南苑校园失物招领</title>
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
 		<script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+		<style>
+		    body{
+		    width:100%;
+		    }
+		</style>
 	</head>
 	<body>
-		
+           <div style="margin-bottom:100px">
 		<div class="page-header">
-		  <h4>个人失物模块</h4>
+		  <h4><i class="glyphicon glyphicon-asterisk"></i> 个人失物模块</h4>
 		</div>
 
-		<ul class="list-group">
-
+            <span class="badge">{$count}条记录</span> 
 		    <div align="right" style="margin-bottom: 1em">
 			<a href="{:U('Home/Personal/lostadd')}" class ="btn btn-primary">
-		    新建个人报失
+		     <i class="glyphicon glyphicon-plus"></i> 新建个人报失
 		    </a>
 		    </div>
 
-		  <foreach name="list" item="l" >
-				<a  href="{:U('BackgroundAdmin/SchoolmateMien/showNewsPage',array('id'=>$news['id']))}">
-				  <li class="list-group-item listItems">
-				  	<div class="row">
-					  <div class="col-xs-7 col-sm-7 col-md-7">
-					  	<font style="color:#666">
-								  	
-							失物人的学号：{$l['lost_number']}
-							失物人的姓名：{$l['lost_name']}
-							失物时间：<?php echo date('Y-m-d',$l['time']); ?>
-							失物描述：{$l['lost_type']}
+    
+			 <table class="table table-striped">
+			    <tbody>
+					   <foreach name="list" item="l" >
+				              
+			                    <tr>
+			                      <td> 
+			                       <a  href="{:U('Home/Personal/lostDetail',array('lost_id'=>$l['lost_id']))}" style="text-decoration:none"> 
+			                      <img src="__PUBLIC__/{$l['thumb_img']}" alt="失物招领" width="50" height="50" style="border:3px solid gray;border-radius:2px;">  <!--失物的缩略图-->
+			                      </a>
+			                      </td>
+			                      <td>
+			                        <a  href="{:U('Home/Personal/lostDetail',array('lost_id'=>$l['lost_id']))}" style="text-decoration:none"> 
+			                      <font style="color:#666">
+			                        <i class="glyphicon glyphicon-list-alt"></i>失物人的学号:{$l['lost_number']}
+			                      失物人的姓名:{$l['lost_name']}a
+			                      失物类型:{$l['lost_type']}
+			                       <i class="glyphicon glyphicon-time"></i>失物时间:<?php echo date('Y-m-d',$l['time']); ?>
+			                       </font>
+			                       </a>
+			                       </td>
+			                      <td> 
+			                           <a  href="{:U('Home/Personal/lostDetail',array('lost_id'=>$l['lost_id']))}" style="text-decoration:none;"><i class="glyphicon glyphicon-chevron-right" style="font-size:28px;"></i>
+							           </a>
+			                      </td>
+			                    </tr>
+						       </a>
+						   </foreach>	
+			       </tbody>
+			      </table>
 
-		   				 </font>
-					  	<div style="width: 90%;margin-left: 5%">
-						   
-					  	</div>
-					    
-					  </div>
-					  <div class="col-xs-5 col-sm-5 col-md-5" align="right">
-					  	    <a class="btn btn-primary" href="{:U('Home/Personal/lostDetail',array('lost_id'=>$l['lost_id']))}" style="text-decoration:none;">详情
-							</a>
-					  </div>
-					</div>
-				  </li>
-			  </a>
-			   </foreach>	
-		</ul>
+		
+		
 		 <h3>{$page}</h3>
 		  <form method="post" action="{:U('Home/Personal/index')}">
           <label id="lblSelect">
           <select class="form-control" name="p" selected="p" id="selectStyle">
-          <?php for($i=1;$i<=($count/5+1);$i++){?>
+          <?php for($i=1;$i<=($count/10+1);$i++){?>
           <option><?php echo $i; ?></a></option>
           <?php } ?>
           </select>
           </label>
           <input class="btn btn-default" type="submit" value="跳转">
           </form>
+       </div>
 
         <div style="visibility:hidden;display:none">
 		<div id="pendingAllEdit">

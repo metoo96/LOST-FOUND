@@ -128,7 +128,7 @@ class UserController extends Controller{
     * 发送验证码
     */
     private function sendCode($phone,$code){
-        $remote_server = "http://www.cybergear-cn.com/ACM/official/updatePhone.php?mobile=".$phone."&code=".$code;
+        $remote_server = "http://zgz.s1.natapp.cc/lostfoundmsg/updatePhone.php?mobile=".$phone."&code=".$code;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $remote_server);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

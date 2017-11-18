@@ -1,74 +1,69 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>
-南苑校园失物招领系统
-</title>
-<link rel="stylesheet" type="text/css" href="/lost_found/Public/css/Login.css">
-<link rel="stylesheet" type="text/css" href="/lost_found/Public/css/Basic.css">
-</head>
-<body>
-<h1>南苑校园失物招领系统登录</h1>
- <div style="width:100%;height:5px">
-       <div style="float:left;width:50%;height:5px;background-color:#FFFF00">
-       </div>
-       <div style="float:right;width:50%;height:5px;background-color:#22DD48">
-       </div>
- </div>
-	  <div >
-	  <div style="text-align:center;text-shadow:5px 6px 5px #22DD22"><img  style="border:10px solid #22DD22;border-radius:130px;margin-top: 10%" width="250px" height="250px" src="/lost_found/Public/img/nf.jpg" alt="nanfang"/></div>
-		  <div>
-			  <input type="text" placeholder="手机号" id="mobile"/>	
-		  </div><br>
-		      <input type="text" placeholder="验证码" id="code">
-		  <div id="btnDiv" style="margin-top: 5%">
-		  <button onclick="getCode()" id="getBtn">
-					 获取验证码
+<?php if (!defined('THINK_PATH')) exit();?>﻿<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>南苑校园失物招领登录</title>
+		<link rel="stylesheet" type="text/css" href="/lost_found/Public/css/bootstrap.min.css">
+		<script type="text/javascript" src="/lost_found/Public/js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="/lost_found/Public/js/bootstrap.min.js"></script>
+	    <style type="text/css">
+			.header {
+				margin-left: 0;
+				margin-right: 0;
+				height:50px;
+				line-height: 50px;
+				background-color: #4A515B;
+				color:#fff;
+			}
+			.content {
+				margin-top:0px;
+				/*width:90%;*/
+				margin-left: 5%;
+			}
+			.content input {
+				width:60%;
+				border:1px #eee solid;
+				height:30px;
+				line-height: 30px;
+				padding:16px 16px 16px 16px ;
+			}
+		</style>
+	</head>
+	<body>
+		<div align="center" class="header">
+			验证手机号
+		</div>
+		
+		  <div id="myCarousel" class="carousel slide"  style="height:140px;">
+                      <!-- 轮播（Carousel）项目 -->
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <img src="/lost_found/Public/img/1.jpg"  alt="First slide">
+                          </div>
+                      </div>
+         </div>
+     
+		<div class="content">
+			<div>
+				<input type="text" placeholder="手机号" id="mobile">
+				<button onclick="getCode()" id="getBtn" class="btn btn-warning">
+					获取验证码
 				</button>
-				<div id="getdefaultBtn" style="display:none">
+				<div id="getdefaultBtn" class="btn btn-gray" style="display: none">
 					60s后重新获取
 				</div>
-				<button  onclick="checkCode()" >
-			        登录   
-				</button>
-		  </div>
-		  <div>
-		  <div style="width:100%;height:5px">
-			   <div style="float:right;width:50%;height:5px;background-color:#FFFF00">
-			   </div>
-			   <div style="float:left;width:50%;height:5px;background-color:#22DD48">
-			   </div>
-         </div>
-		 <tr>
-		  <!--分享操作的代码-->
-		  <!-- JiaThis Button BEGIN -->
-		  <div class="jiathis_style_32x32">
-				<a class="jiathis_button_qzone"></a>
-				<a class="jiathis_button_tsina"></a>
-				<a class="jiathis_button_tqq"></a>
-				<a class="jiathis_button_weixin"></a>
-				<a class="jiathis_button_renren"></a>
-				<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-				<a class="jiathis_counter_style"></a>
 			</div>
-			<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-			<!-- JiaThis Button END -->
-			<div>
-			<span>
-			<a href="<?php echo U('Home/index/We');?>" style="color:#FFFFFF">关于我们</a>
-			</span>
-			</div>
-	       <!--动态点赞开始-->
-			<div class="praise">
-			<span id="praise"><img  style="width:50px;height:50px;" src="/lost_found/Public/img/zan.png" id="praise-img" /></span>
-			<span id="praise-txt">1456</span>
-            </div>
-		   <!--动态点赞结束-->
-			</div>
-		   </div>
+			<input class="form-control" style="width:80%;margin-top:16px" type="text" placeholder="输入验证码" id="code">
 		</div>
-		<div style="visibility:hidden;display:none">
+			<div align="center">
+				<button style="width:80%;margin-top:60px" onclick="checkCode()" class="btn btn-success">
+					提交
+				</button>
+			</div>
+
+			<div style="visibility:hidden;display:none">
 			<div id="getCodeAjax">
 				<?php echo U('Home/Index/getCodeAjax');?>
 			</div>
@@ -78,10 +73,7 @@
 			<div id="loginindex">
 			    <?php echo U('Home/User/index');?>
 			</div>
-		</div>
-
-		<script type="text/javascript" src="/lost_found/Public/js/jquery-2.2.4.min.js"></script>
-		<script type="text/javascript" src="/lost_found/Public/js/bootstrap.min.js"></script>
+		    </div>
 		<script type="text/javascript">
 
 		//验证码码点击后需要等待60秒
@@ -91,7 +83,7 @@
 				btn.hide();
 				defaultBtn.show();
 				var number = 60;
-				defaultBtn.html(number + "s后重新获取");
+				defaultBtn.html(number+ "s后重新获取");
 				var intervalFun = function(){
 					if(number == 0){
 						btn.show();
@@ -156,6 +148,6 @@
 				})
 			}
 			
-		</script>
+		  </script>  
 	</body>
 </html>

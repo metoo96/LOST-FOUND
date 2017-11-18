@@ -1,27 +1,31 @@
-<?php
+<?php 
 namespace Home\Controller;
 use Think\Controller;
 class PersonalController extends Controller{
+
 	private $lostmodel;
 	public function __construct(){
 		parent::__construct();
 		$this->lostmodel=D('Lost');
 	}
+
+ 
+
 	/**
-	 * 个人失物总界面
+	 * ¸öÈËÊ§Îï×Ü½çÃæ
 	 * @return [type] [description]
 	 */
 	public function index(){
-		if($this->checkCookie()){
+	if($this->checkCookie()){
        	$p = I('p')?I('p'):1;
-        // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
-        $list = $this->lostmodel->where(array('lost_mobile'=>cookie('user_mobile')))->order('lost_id desc')->page($p.',5')->select();
-        $this->assign('list',$list);// 赋值数据集
-        $count      = $this->lostmodel->where(array('lost_mobile'=>cookie('user_mobile')))->count();// 查询满足要求的总记录数
-        $Page       = new \Think\Page($count,5);// 实例化分页类 传入总记录数和每页显示的记录数
-        $show       = $Page->show();// 分页显示输出
+        // ½øÐÐ·ÖÒ³Êý¾Ý²éÑ¯ ×¢Òâpage·½·¨µÄ²ÎÊýµÄÇ°Ãæ²¿·ÖÊÇµ±Ç°µÄÒ³ÊýÊ¹ÓÃ $_GET[p]»ñÈ¡
+        $list = $this->lostmodel->where(array('lost_mobile'=>cookie('user_mobile')))->order('lost_id desc')->page($p.',10')->select();
+        $this->assign('list',$list);// ¸³ÖµÊý¾Ý¼¯
+        $count      = $this->lostmodel->where(array('lost_mobile'=>cookie('user_mobile')))->count();// ²éÑ¯Âú×ãÒªÇóµÄ×Ü¼ÇÂ¼Êý
+        $Page       = new \Think\Page($count,10);// ÊµÀý»¯·ÖÒ³Àà ´«Èë×Ü¼ÇÂ¼ÊýºÍÃ¿Ò³ÏÔÊ¾µÄ¼ÇÂ¼Êý
+        $show       = $Page->show();// ·ÖÒ³ÏÔÊ¾Êä³ö
        // var_dump($show);
-        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('page',$show);// ¸³Öµ·ÖÒ³Êä³ö
         $this->assign('count',$count);
         $this->display();
 		}else{
@@ -29,29 +33,27 @@ class PersonalController extends Controller{
 		}
 	}
 
-
-	 /**
-        *正确时返回
+       /**
+        * 成功时返回
         * @param  [type] $msg [description]
         * @return [type]      [description]
         */
        private function successReturn($msg){
-           $res['success'] = true;
-           $res['msg'] = $msg;
-           $this->ajaxReturn($res);
-         }
+         $res['success'] = true;
+         $res['msg'] = $msg;
+         $this->ajaxReturn($res);
+        }
+
        /**
-        *错误时返回
-        * @param  [type] $errmsg [description]
-        * @return [type]         [description]
+        *´íÎóÊ±·µ»Ø
         */
          private function errorReturn($errmsg){
            $res['success'] = false;
            $res['errmsg'] = $errmsg;
            $this->ajaxReturn($res);
          }
-		 /**
-		     * 用于检验数据是否完整
+		     /**
+		     * ÓÃÓÚ¼ìÑéÊý¾ÝÊÇ·ñÍêÕû
 		     * @param  [type] $data [description]
 		     * @return [type]       [description]
 		     */
@@ -65,20 +67,20 @@ class PersonalController extends Controller{
     
 
 	/**
-	 * 根据手机号来查询个人失物信息（报失列表）
+	 * ¸ù¾ÝÊÖ»úºÅÀ´²éÑ¯¸öÈËÊ§ÎïÐÅÏ¢£¨±¨Ê§ÁÐ±í£©
 	 * @return [type] [description]
 	 */
 	public function lostlist(){
 		if($this->checkCookie()){
        	$p = I('p')?I('p'):1;
-        // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
+        // ½øÐÐ·ÖÒ³Êý¾Ý²éÑ¯ ×¢Òâpage·½·¨µÄ²ÎÊýµÄÇ°Ãæ²¿·ÖÊÇµ±Ç°µÄÒ³ÊýÊ¹ÓÃ $_GET[p]»ñÈ¡
         $list = $this->lostmodel->where(array('lost_mobile'=>cookie('user_mobile')))->order('lost_id desc')->page($p.',5')->select();
-        $this->assign('list',$list);// 赋值数据集
-        $count      = $this->lostmodel->where(array('lost_mobile'=>cookie('user_mobile')))->count();// 查询满足要求的总记录数
-        $Page       = new \Think\Page($count,5);// 实例化分页类 传入总记录数和每页显示的记录数
-        $show       = $Page->show();// 分页显示输出
+        $this->assign('list',$list);// ¸³ÖµÊý¾Ý¼¯
+        $count      = $this->lostmodel->where(array('lost_mobile'=>cookie('user_mobile')))->count();// ²éÑ¯Âú×ãÒªÇóµÄ×Ü¼ÇÂ¼Êý
+        $Page       = new \Think\Page($count,5);// ÊµÀý»¯·ÖÒ³Àà ´«Èë×Ü¼ÇÂ¼ÊýºÍÃ¿Ò³ÏÔÊ¾µÄ¼ÇÂ¼Êý
+        $show       = $Page->show();// ·ÖÒ³ÏÔÊ¾Êä³ö
        // var_dump($show);
-        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('page',$show);// ¸³Öµ·ÖÒ³Êä³ö
         $this->assign('count',$count);
         $this->display(); 
 		}else{
@@ -91,7 +93,7 @@ class PersonalController extends Controller{
 
 
 	/**
-	 * 个人失物详情
+	 * ¸öÈËÊ§ÎïÏêÇé
 	 * @return [type] [description]
 	 */
 	public function lostdetail(){
@@ -103,7 +105,7 @@ class PersonalController extends Controller{
 			$this->redirect("Home/index/login");
 		}
 	}
-	public function lostdetailAjax(){
+       public function lostdetailAjax(){
 	   if($this->checkCookie()){
        $data['lost_desc']=I('post.desc');
        $data['lost_number']=I('post.number');
@@ -126,7 +128,7 @@ class PersonalController extends Controller{
 
 
 	/**
-	 * 个人新建报失
+	 * ¸öÈËÐÂ½¨±¨Ê§
 	 * @return [type] [description]
 	 */
 	public function lostadd(){
@@ -139,34 +141,59 @@ class PersonalController extends Controller{
 	 
 	public function lostaddAjax(){
 		if($this->checkCookie()){
-		$data = $this->getlostaddData();
-		$result=M('Lost')->add($data);
-		if($result!==false){
-			$this->successReturn('报失提交成功');
+		    $data = $this->getlostaddData();
+
+
+	    $upload = new \Think\Upload();// ÊµÀý»¯ÉÏ´«Àà
+            $upload->maxSize   =     104857600;// ÉèÖÃ¸½¼þÉÏ´«´óÐ¡
+            $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// ÉèÖÃ¸½¼þÉÏ´«ÀàÐÍ
+            $upload->rootPath  =     './Public/Upload/'; // ÉèÖÃ¸½¼þÉÏ´«¸ùÄ¿Â¼
+            $upload->savePath  =     ''; // ÉèÖÃ¸½¼þÉÏ´«£¨×Ó£©Ä¿Â¼
+            // ÉÏ´«ÎÄ¼þ
+            $info   =   $upload->upload();
+            //var_dump($info);
+            if(!$info) {
+                $this->error($upload->getError());
+            }else{// ÉÏ´«³É¹¦
+               $img_path1 = './Public/Upload/'.$info['img']['savepath'];
+                $name= $info['img']['savename'];
+
+                $image = new \Think\Image();
+                $image->open($img_path1.$name);
+                // °´ÕÕÔ­Í¼µÄ±ÈÀýÉú³ÉÒ»¸ö×î´óÎª100*100µÄËõÂÔÍ¼²¢±£´æÎªthumb.jpg
+                $img_xiao = './Public/Upload/thumb/'.$name;
+                $image->thumb(100, 100)->save($img_xiao);
+                $this->lostmodel->thumb_img = str_replace('./Public/','',$img_xiao);
+                $this->lostmodel->img = str_replace('./Public/','',$img_path1.$name);
+				$this->lostmodel->add();
+
+			$admin = M('admin')->select();
+            foreach ($admin as $key => $value) {
+            $this->sendNotice($admin[$key]['mobile']);//¸øËùÓÐµÄ¹ÜÀíÔ±·¢ËÍÍ¨Öª£»
+            }
+			$this->success('报失提交成功');
 			$this->redirect("Home/Personal/index");
+		  }
 		}else{
-			$this->errorReturn('报失提交失败');
-		}
-		}else{
+			$this->error("账号已过期");
 			$this->redirect("Home/index/login");
 		}
 	}
+
     public function getlostaddData(){
-    	$data['lost_type'] = I('post.type');
-    	$data['lost_name'] = I('post.name');
-    	$data['lost_number'] = I('post.number');
-    	$data['lost_desc'] = I('post.desc');
-    	$data['lost_mobile'] = cookie('user_mobile');
-		$data['time'] = time();
-    	$this->checkData($data);
-    	return $data;
+    	$this->lostmodel->lost_type = I('post.type');
+    	$this->lostmodel->lost_name = I('post.name');
+    	$this->lostmodel->lost_number = I('post.number');
+    	$this->lostmodel->lost_desc = I('post.desc');
+    	$this->lostmodel->lost_mobile = cookie('user_mobile');
+		$this->lostmodel->time = time();
     }
 
 
 
 
 	/**
-	 * 个人捡到失物
+	 * ¸öÈË¼ñµ½Ê§Îï
 	 * @return [type] [description]
 	 */
 	public function findadd(){
@@ -178,10 +205,9 @@ class PersonalController extends Controller{
 	}
 	public function findaddAjax(){
 		if($this->checkCookie()){
-		$data = $this->getFindAddAjaxData();
+		$data = $this->getFindAddAjaxData();//»ñÈ¡Ìá½»µÄÊý¾Ý
 		$result = M('Find')->add($data);
 		if($result!==false){
-			//进行查询
 			$this->checkLostFind();
 			$this->successReturn('提交成功');
 			$this->redirect("Home/User/index");
@@ -196,12 +222,12 @@ class PersonalController extends Controller{
 		$data['lost_number'] = I('post.lnumber');
 		$data['lost_name'] = I('post.lname');
 		$data['lost_type'] = I('post.ltype');
-       	$data['lost_desc'] = I('post.ldesc');
-       	$data['find_number'] = I('post.fnumber');
+        $data['lost_desc'] = I('post.ldesc');
+        $data['find_number'] = I('post.fnumber');
        	$data['find_name'] = I('post.fname');
        	$data['find_desc'] = I('post.fdesc');
-       	$data['find_mobile'] = cookie('user_mobile');
-       	$this->checkData($data);
+        $data['find_mobile'] = cookie('user_mobile');
+        $this->checkData($data);
 		return $data;
 	}
 
@@ -209,11 +235,11 @@ class PersonalController extends Controller{
 
 
 	/**
-	 * 对已上线的失物（即 lost表中 temp=1) 进行匹配
-	 * 对失物进行匹配，如果匹配成功就发送短信
-	 * 匹配规则：A.是按照失物人的学号及失物类型进行匹配B.是按照失物人的姓名及失物类型进行匹配
-	 * 如果已经匹配了的失物，就把lost表中的mark标记为 1（mark=1 保存到表中）
-	 *并且将find 表中的mark标记为 1
+	 * ¶ÔÒÑÉÏÏßµÄÊ§Îï£¨¼´ lost±íÖÐ temp=1) ½øÐÐÆ¥Åä
+	 * ¶ÔÊ§Îï½øÐÐÆ¥Åä£¬Èç¹ûÆ¥Åä³É¹¦¾Í·¢ËÍ¶ÌÐÅ
+	 * Æ¥Åä¹æÔò£ºA.ÊÇ°´ÕÕÊ§ÎïÈËµÄÑ§ºÅ¼°Ê§ÎïÀàÐÍ½øÐÐÆ¥ÅäB.ÊÇ°´ÕÕÊ§ÎïÈËµÄÐÕÃû¼°Ê§ÎïÀàÐÍ½øÐÐÆ¥Åä
+	 * Èç¹ûÒÑ¾­Æ¥ÅäÁËµÄÊ§Îï£¬¾Í°Ñlost±íÖÐµÄmark±ê¼ÇÎª 1£¨mark=1 ±£´æµ½±íÖÐ£©
+	 *²¢ÇÒ½«find ±íÖÐµÄmark±ê¼ÇÎª 1
 	 * @return [type] [description]
 	 */
 	public function checkLostFind(){
@@ -221,8 +247,7 @@ class PersonalController extends Controller{
 		$find=M('Find')->select();
 		foreach($lost as $key=>$value){
 			foreach($find as $k=>$v){
-				if((($value['lost_number']==$v['lost_number'])&&($value['lost_type']==$v['lost_type']))||(
-				($value['lost_name']==$v['lost_name'])&&($value['lost_type']==$v['lost_type']))){
+				if(($value['lost_number']==$v['lost_number'])&&($value['lost_type']==$v['lost_type'])){
 
 					if(($value['temp']!=0)&&($value['mark']!=1)&&($value['lost_number']!=0)&&($value['lost_name']!=='0')&&($v['mark']!=1)){
 
@@ -240,10 +265,10 @@ class PersonalController extends Controller{
 
 
      /*
-    * 发送给失物人信息
+    * ·¢ËÍ¸øÊ§ÎïÈËÐÅÏ¢
     */
     private function sendMsg($lostphone,$findphone){
-        $remote_server = "http://www.cybergear-cn.com/ACM/official/sendMsg.php?lostphone=".$lostphone."&findphone=".$findphone;
+        $remote_server = "http://zgz.s1.natapp.cc/lostfoundmsg/sendMsg.php?lostphone=".$lostphone."&findphone=".$findphone;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $remote_server);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -258,8 +283,23 @@ class PersonalController extends Controller{
         } 
         return $data;
     }
+
+
+     /*
+    * ·¢ËÍ¸øºóÌ¨¹ÜÀíÔ±µÄÌáÊ¾ÐÅÏ¢
+    */
+    private function sendNotice($mobile){
+        $remote_server = "http://zgz.s1.natapp.cc/lostfoundmsg/sendNotice.php?mobile=".$mobile;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $remote_server);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT, "jb51.net's CURL Example beta");
+        $data = curl_exec($ch);
+        curl_close($ch);
+       // $this->successReturn('³É¹¦');
+    }
     /**
-     * 验证cookie
+     * ÑéÖ¤cookie
      */
     public function checkCookie(){
     $result=M('User')->where(array('user_mobile'=>cookie('user_mobile')))->find();
@@ -277,4 +317,3 @@ class PersonalController extends Controller{
     return false;
     }
 }
-?>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="">
 	<head>
 		<meta charset="utf-8">
@@ -18,7 +18,7 @@
 				color:#fff;
 			}
 			.content {
-				margin-top:100px;
+				margin-top:0px;
 				/*width:90%;*/
 				margin-left: 5%;
 			}
@@ -35,6 +35,16 @@
 		<div align="center" class="header">
 			验证手机号
 		</div>
+		
+		  <div id="myCarousel" class="carousel slide"  style="height:140px;">
+                      <!-- 轮播（Carousel）项目 -->
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <img src="__PUBLIC__/img/1.jpg"  alt="First slide">
+                          </div>
+                      </div>
+         </div>
+     
 		<div class="content">
 			<div>
 				<input type="text" placeholder="手机号" id="mobile">
@@ -48,7 +58,7 @@
 			<input class="form-control" style="width:80%;margin-top:16px" type="text" placeholder="输入验证码" id="code">
 		</div>
 			<div align="center">
-				<button style="width:80%;margin-top:16px" onclick="checkCode()" class="btn btn-success">
+				<button style="width:80%;margin-top:60px" onclick="checkCode()" class="btn btn-success">
 					提交
 				</button>
 			</div>

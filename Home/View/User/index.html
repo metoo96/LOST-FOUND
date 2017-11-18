@@ -1,11 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>失物招领</title>
+		<title>南苑校园失物招领</title>
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+		<!--页面下部的导航效果--start-->
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/all1.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base1.css">
+		<!--页面下部的导航效果--end-->
 		<link rel="Shortcut Icon" href="__PUBLIC__/res/favicon.icon">
 		<script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
@@ -22,12 +26,11 @@
 			}
 			#main-nav {
 			   width:100%;
-	           margin-left: 1px;
+	     
 	        }
  
             #main-nav.nav-tabs.nav-stacked > li > a {
                 padding: 10px 8px;
-                font-size: 12px;
                 font-weight: 600;
                 color: #4A515B;
                 background: #E9E9E9;
@@ -129,64 +132,148 @@
 		</style>
 	</head>
 	<body>
-        <div align="center" class="header">
-		   南苑校园失物招领
+     <div  class="header">
+       <div style="width:20%;float:left;margin-top:0px;" > 
+	         <div style="margin-left:20%;">
+				       <a href="javascript:void(0);" onclick="router.action('../AllLost/newIndexData')">
+                   	   <i class="glyphicon glyphicon-home btn  btn-default  btn-sm">
+	                           <p>首页</p></i>
+	              </a>
+		      </div>
+	   </div>
+	   <div style="width:60%;float:left;">
+	             <div style="margin-left:20%;">
+	             <h4>校园失物招领</h4>
+	             </div>
+	   </div>
+	    <div style="width:20%;float:right;margin-top:0px;" > 
+	         <div style="margin-left:20%;">
+           <a onclick="logout()" >
+                <i class="glyphicon glyphicon-off btn  btn-warning  btn-sm "> <p>退出</p>
+	               </i>
+	          </a>
+	         </div>
+	   </div>
 		</div>
-		<!--<div class="navbar navbar-duomi navbar-static-top" role="navigation">
-	        <div class="container-fluid">
-	            <div class="navbar-header">
-	                <a class="navbar-brand" align="center">
-	                南苑校园失物招领
-	                </a>
-	            </div>
-	        </div>
-	    </div>-->
-	    <div class="container-fluid">
-	        <div class="row">
-	            <div class="col-md-2">
-	                <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
+		
+		  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000" style="height:120px;">
+                      <!-- 轮播（Carousel）指标 -->
+                      <ol class="carousel-indicators">
+                          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                          <li data-target="#myCarousel" data-slide-to="1"></li>
+                          <li data-target="#myCarousel" data-slide-to="2"></li>
+                          <li data-target="#myCarousel" data-slide-to="3"></li>
+                          <li data-target="#myCarousel" data-slide-to="4"></li>
+                      </ol>   
+                      <!-- 轮播（Carousel）项目 -->
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <img src="__PUBLIC__/img/1.jpg"  alt="First slide">
+                          </div>
+                          <div class="item">
+                              <img src="__PUBLIC__/img/2.jpg"  alt="Second slide">
+                          </div>
+                          <div class="item">
+                              <img src="__PUBLIC__/img/3.jpg"  alt="Third slide">
+                          </div>
+                           <div class="item">
+                              <img src="__PUBLIC__/img/4.jpg"  alt="Four slide">
+                          </div>
+                           <div class="item">
+                              <img src="__PUBLIC__/img/5.jpg"  alt="Five slide">
+                          </div>
+                      </div>
+                      <!-- 轮播（Carousel）导航 -->
+                      <a class="carousel-control left" href="#myCarousel" 
+                          data-slide="prev" >&lsaquo;
+                      </a>
+                      <a class="carousel-control right" href="#myCarousel" 
+                          data-slide="next">&rsaquo;
+                      </a>
+       </div>
+		
+	    <div style="width:100%" >
+	        <!--<div style="width:100%" >
+	            <div style="width:100%">
+	                <ul id="main-nav" class="nav nav-tabs nav-stacked" style="width:100%">
 	                    <li class="nav-list" name="system">
 	                        <a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse">
-	                            <i class="glyphicon glyphicon-cog"></i>
-	                            系统功能
+	                           
+	                               <i class="glyphicon glyphicon-cog"></i>  系统功能</h5
 	                               <span class="pull-right glyphicon glyphicon-chevron-down"></span>
 	                        </a>
 	                        <ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
 	                            <li>
-	                            <a href="javascript:void(0);" onclick="router.action('../User/fullMsg')"><i class="glyphicon glyphicon-user"></i>个人信息</a></li>
+	                            <a href="javascript:void(0);" onclick="router.action('../User/fullMsg')"><i class="glyphicon glyphicon-user"></i> 个 人 信 息</a></li>
 	                            <li>
 	                            <a href="javascript:void(0);" onclick="router.action('../AllLost/lostlist')">
-	                            <i class="glyphicon glyphicon-th-list"></i>所有失物
+	                            <i class="glyphicon glyphicon-th-list"></i> 所 有 失 物
 	                            </a>
 	                            </li>
 	                            <li>
-	                            <a href="javascript:void(0);" onclick="router.action('../Personal/index')"><i class="glyphicon glyphicon-asterisk"></i>个人失物
+	                            <a href="javascript:void(0);" onclick="router.action('../Personal/index')"><i class="glyphicon glyphicon-asterisk"></i> 个 人 失 物
 	                            </a>
 	                            </li>
 	                            <li>
 	                            <a href="javascript:void(0);" onclick="router.action('../Personal/findadd')">
-	                            <i class="glyphicon glyphicon-edit"></i>捡到失物</a></li>
+	                            <i class="glyphicon glyphicon-edit"></i> 捡 到 失 物</a></li>
 	                            <li class="nav-list" name="SchoolmateServer">
 	                            <a onclick="logout()" >
 	                            <i class="glyphicon glyphicon-fire"></i>
-	                            退出系统
+	                             退 出 系 统
 	                            </a>
 	                            </li>
 	                        </ul>
 	                    </li>
 	                </ul>
 	            </div>
-	            <div class="col-md-10" >
-	                <iframe id="mainPage" src="__APP__" frameBorder="0" width="100%" scrolling="yes" height="900"></iframe>
-	            </div>
 	        </div>
-	    </div>
-	     <div class="scroll" id="scroll" style="display:none;">
+	    </div>-->
+	   <div style="width:100%" >
+                         
+                   
+	                <iframe id="mainPage" src="__APP__/Home/AllLost/newIndexData" frameBorder="0" width="100%" scrolling="yes" height="900">          
+	                </iframe>
+	     
+	   </div>
+	     <footer class="page-footer fixed-footer" id="footer" style="text-decoration:none;">
+			<ul>
+				<li >
+				       <a href="javascript:void(0);" onclick="router.action('../AllLost/lostlist')">
+	                  <span class="glyphicon glyphicon-th-list btn  btn-default  btn-xs">
+	                           <h5>所有失物</h5> </span> 
+	              </a>
+				</li>
+				<li>
+				    <a href="javascript:void(0);" onclick="router.action('../Personal/index')">
+				                <span class="glyphicon glyphicon-pencil btn  btn-default  btn-xs">
+				          
+				               <h5>个人失物</h5>     </span> 
+					     </a>
+				</li>
+				<li>
+				         <a href="javascript:void(0);" onclick="router.action('../Personal/findadd')">
+	                            <span class="glyphicon glyphicon-edit btn  btn-default  btn-xs">
+	                            <h5>捡到失物</h5> </span>
+	                            </a>
+	                <a onclick="logout()" >
+				</li>
+				<li>
+					<a href="javascript:void(0);" onclick="router.action('../User/fullMsg')">
+						<span class="glyphicon glyphicon-user  btn  btn-default  btn-xs" >
+						             <h5 >个人信息</h5></span>
+					</a>
+				</li>
+			</ul>
+		</footer>
+		
+		
+	    <!--<div class="scroll" id="scroll" style="display:none;">
 		 返回顶部
-	     </div>
+	     </div>-->
 
         <div style="visibility:hidden;display:none">
-		<div id="logoutAjax">
+		    <div id="logoutAjax">
         {:U('Home/User/logout')}
         </div>
         </div>
@@ -216,6 +303,5 @@
 
 			</script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
- 		<!-- <script src="Hello World"></script> -->
 	</body>
 </html>
