@@ -1,34 +1,51 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>南苑校园失物招领后台登录</title>
+		<title>校园失物招领后台登录</title>
 		<link rel="icon" type="image/x-icon" href="__PUBLIC__/res/nf.icon" />
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/indexFrame.css">
 		<script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.4.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
 	</head>
-	<body>
-		
-	<div style="width: 70%;margin-left: 15%">
+	<body>	
+	    <div class="navbar navbar-duomi navbar-static-top" role="navigation" style="background-color:#262626">
+	        <div class="container-fluid">
+	            <div class="navbar-header" style="color:white;text-align:center">
+	                <h4>校园失物招领后台登录</h4>
+	            </div>
+	        </div>
+	    </div>
+	<div style="width: 30%;margin-left: 35%">
 
 		<div align="center" class="page-header">
-		    <h1>南苑校园失物招领后台登录</h1>
+		    <h1>校园失物招领后台登录</h1>
 		</div>
 		<h3>登录</h3>
 		<hr>
 		  <div class="form-group">
 		    <label for="exampleInputEmail1">用户名:</label>
-		    <input type="text" class="form-control" name="username" id="username" placeholder="username">
+		    <input type="text" class="form-control" name="username" id="username" placeholder="username" required>
 		  </div>
 		  <div class="form-group">
 		    <label for="exampleInputPassword1">密码:</label>
-		    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+		    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
 		  </div>
+                  
+		  <div class="form-group">
 		  <button onclick="check()" class="btn btn-success">登   录</button>
+                  </div>
+
 	</div>
+	
+	 <div class="footer" style="background-color:#262626">
+	    	<div class="title" >
+	    
+	    	</div>
+	 </div>
 
 			<div style="visibility:hidden;display:none">
 				<div id="checklogin">

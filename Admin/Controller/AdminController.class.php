@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 namespace Admin\Controller;
 use Think\Controller;
 class AdminController extends Controller{
@@ -63,7 +63,7 @@ class AdminController extends Controller{
 
 	}
 	public function pendingOrderDelAjax(){
-    $data['lost_id'] = I('post.id');
+    	$data['lost_id'] = I('post.id');
 		$result=M('Lost')->where(array('lost_id'=>$data['lost_id']))->delete();
 		if($result!==false){
 			$this->successReturn('关闭成功');
@@ -107,7 +107,7 @@ class AdminController extends Controller{
 	/**
 	 * 对已上线的失物（即 lost表中 temp=1) 进行匹配
 	 * 对失物进行匹配，如果匹配成功就发送短信
-	 * 匹配规则：A.是按照失物人的学号及失物类型进行匹配B.是按照失物人的姓名及失物类型进行匹配
+	 * 匹配规则：是按照失物人的学号及失物类型进行匹配
 	 * 如果已经匹配了的失物，就把lost表中的mark标记为 1（mark=1 保存到表中）
 	 *并且将find 表中的mark标记为 1
 	 * @return [type] [description]
@@ -117,15 +117,14 @@ class AdminController extends Controller{
 		$find=M('Find')->select();
 		foreach($lost as $key=>$value){
 			foreach($find as $k=>$v){
-				if((($value['lost_number']==$v['lost_number'])&&($value['lost_type']==$v['lost_type']))||
-				(($value['lost_name']==$v['lost_name'])&&($value['lost_type']==$v['lost_type']))){
+				if(($value['lost_number']==$v['lost_number'])&&($value['lost_type']==$v['lost_type'])){
 
 					if(($value['temp']!=0)&&($value['mark']!=1)&&($value['lost_number']!=0)&&($value['lost_name']!=='0')&&($v['mark']!=1)){
 
 				M('Lost')->where(array('lost_id'=>$value['lost_id']))->setField(array('mark'=>1));
         M('find')->where(array('find_id'=>$v['find_id']))->setField(array('mark'=>1));
 					    $this->sendMsg($value['lost_mobile'],$v['find_mobile']);
-					    //发信息给物人
+					    //失由于发信息给物人部分未能实现所以暂且不调用
 					    $this->successReturn('查询有这个');
 					}
 				}
@@ -139,7 +138,7 @@ class AdminController extends Controller{
     * 发送给失物人信息
     */
     private function sendMsg($lostphone,$findphone){
-        $remote_server = "http://www.cybergear-cn.com/ACM/official/sendMsg.php?lostphone=".$lostphone."&findphone=".$findphone;
+        $remote_server = "http://zgz.s1.natapp.cc/lostfoundmsg/sendMsg.php?lostphone=".$lostphone."&findphone=".$findphone;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $remote_server);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
